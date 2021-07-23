@@ -6,3 +6,9 @@ def index(request):
     context={}
 
     return render(request, template, context)
+
+def application(request):
+    template="website/application.html"
+    context={}
+
+    return render(request, template, context)
