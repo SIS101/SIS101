@@ -2,4 +2,8 @@
 {% block title %}Application{% endblock title %}
 {% block heading %}Application{% endblock heading %}
 
-{% block main %}{% endblock main %}
+{% block main %}
+
+{% include "form_snippet.html" with form=application_form button="Submit" form_title="Online Application Form" form_action="" form_method="POST" %}
+
+{% endblock main %}

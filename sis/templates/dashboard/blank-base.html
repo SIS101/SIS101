@@ -1,92 +1,85 @@
 <!DOCTYPE html>
 <html lang="en">
+
+<!-- Mirrored from educhamp.themetrades.com/demo/admin/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 22 Feb 2019 13:08:15 GMT -->
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>{% block title %}{% endblock title %}</title>
-  {% load static %}
 
-  <!-- Google Font: Source Sans Pro -->
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
-  <!-- Font Awesome -->
-  <link rel="stylesheet" href="{% static 'dashboard/plugins/fontawesome-free/css/all.min.css' %}">
-  <!-- icheck bootstrap -->
-  <link rel="stylesheet" href="{% static 'dashboard/plugins/icheck-bootstrap/icheck-bootstrap.min.css' %}">
-  <!-- Theme style -->
-  <link rel="stylesheet" href="{% static 'dashboard/dist/css/adminlte.min.css' %}">
+	<!-- META ============================================= -->
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="keywords" content="" />
+	<meta name="author" content="" />
+	<meta name="robots" content="" />
+	{% load static %}
+	<!-- DESCRIPTION -->
+	<meta name="description" content="KIHSR" />
+	
+	<!-- OG -->
+	<meta property="og:title" content="KIHSR" />
+	<meta property="og:description" content="KIHSR" />
+	<meta property="og:image" content="" />
+	<meta name="format-detection" content="telephone=no">
+	
+	<!-- FAVICONS ICON ============================================= -->
+	<link rel="shortcut icon" type="image/x-icon" href="{% static 'website/assets/images/logo.png' %}" />
+	
+	<!-- PAGE TITLE HERE ============================================= -->
+	<title>{% block title %}{% endblock title %} </title>
+	
+	<!-- MOBILE SPECIFIC ============================================= -->
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	
+	<!--[if lt IE 9]>
+	<script src="assets/js/html5shiv.min.js"></script>
+	<script src="assets/js/respond.min.js"></script>
+	<![endif]-->
+	
+	<!-- All PLUGINS CSS ============================================= -->
+	<link rel="stylesheet" type="text/css" href="{% static 'dashboard/assets/css/assets.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'dashboard/assets/vendors/calendar/fullcalendar.css' %}">
+	
+	<!-- TYPOGRAPHY ============================================= -->
+	<link rel="stylesheet" type="text/css" href="{% static 'dashboard/assets/css/typography.css' %}">
+	
+	<!-- SHORTCODES ============================================= -->
+	<link rel="stylesheet" type="text/css" href="{% static 'dashboard/assets/css/shortcodes/shortcodes.css' %}">
+	
+	<!-- STYLESHEETS ============================================= -->
+	<link rel="stylesheet" type="text/css" href="{% static 'dashboard/assets/css/style.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'dashboard/assets/css/dashboard.css' %}">
+	<link class="skin" rel="stylesheet" type="text/css" href="{% static 'dashboard/assets/css/color/color-1.css' %}">
+	
 </head>
-<body class="hold-transition login-page">
-<div class="login-box">
-  <div class="login-logo">
-    <a href="/"><b>KIHSR</b></a>
-  </div>
-  <!-- /.login-logo -->
-  <div class="card">
-    <div class="card-body login-card-body">
-      <p class="login-box-msg">Sign in to start your session</p>
+<body id="bg">
 
-      <form action="" method="post">
-        <div class="input-group mb-3">
-          <input type="email" class="form-control" placeholder="Email">
-          <div class="input-group-append">
-            <div class="input-group-text">
-              <span class="fas fa-envelope"></span>
-            </div>
-          </div>
-        </div>
-        <div class="input-group mb-3">
-          <input type="password" class="form-control" placeholder="Password">
-          <div class="input-group-append">
-            <div class="input-group-text">
-              <span class="fas fa-lock"></span>
-            </div>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-8">
-            <div class="icheck-primary">
-              <input type="checkbox" id="remember">
-              <label for="remember">
-                Remember Me
-              </label>
-            </div>
-          </div>
-          <!-- /.col -->
-          <div class="col-4">
-            <button type="submit" class="btn btn-primary btn-block">Sign In</button>
-          </div>
-          <!-- /.col -->
-        </div>
-      </form>
+<div class="page-wraper">
+	<div id="loading-icon-bx"></div>
+	{% include "messages_snippet.html" %}
+	{% block main %}{% endblock main %}
 
-      <div class="social-auth-links text-center mb-3">
-        <p>- OR -</p>
-        <a href="#" class="btn btn-block btn-primary">
-          <i class="fab fa-facebook mr-2"></i> Sign in using Facebook
-        </a>
-        <a href="#" class="btn btn-block btn-danger">
-          <i class="fab fa-google-plus mr-2"></i> Sign in using Google+
-        </a>
-      </div>
-      <!-- /.social-auth-links -->
-
-      <p class="mb-1">
-        <a href="forgot-password.html">I forgot my password</a>
-      </p>
-      <p class="mb-0">
-        <a href="register.html" class="text-center">Register a new membership</a>
-      </p>
-    </div>
-    <!-- /.login-card-body -->
-  </div>
 </div>
-<!-- /.login-box -->
 
-<!-- jQuery -->
-<script src="{% static 'dashboard/plugins/jquery/jquery.min.js' %}"></script>
-<!-- Bootstrap 4 -->
-<script src="{% static 'dashboard/plugins/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
-<!-- AdminLTE App -->
-<script src="{% static 'dashboard/dist/js/adminlte.min.js' %}"></script>
+<!-- External JavaScripts -->
+<script src="{% static 'dashboard/assets/js/jquery.min.js' %}"></script>
+<script src="{% static 'dashboard/assets/vendors/bootstrap/js/popper.min.js' %}"></script>
+<script src="{% static 'dashboard/assets/vendors/bootstrap/js/bootstrap.min.js' %}"></script>
+<script src="{% static 'dashboard/assets/vendors/bootstrap-select/bootstrap-select.min.js' %}"></script>
+<script src="{% static 'dashboard/assets/vendors/bootstrap-touchspin/jquery.bootstrap-touchspin.js' %}"></script>
+<script src="{% static 'dashboard/assets/vendors/magnific-popup/magnific-popup.js' %}"></script>
+<script src="{% static 'dashboard/assets/vendors/counter/waypoints-min.js' %}"></script>
+<script src="{% static 'dashboard/assets/vendors/counter/counterup.min.js' %}"></script>
+<script src="{% static 'dashboard/assets/vendors/imagesloaded/imagesloaded.js' %}"></script>
+<script src="{% static 'dashboard/assets/vendors/masonry/masonry.js' %}"></script>
+<script src="{% static 'dashboard/assets/vendors/masonry/filter.js' %}"></script>
+<script src="{% static 'dashboard/assets/vendors/owl-carousel/owl.carousel.js' %}"></script>
+<script src="{% static 'dashboard/assets/vendors/scroll/scrollbar.min.js' %}"></script>
+<script src="{% static 'dashboard/assets/js/functions.js' %}"></script>
+<script src="{% static 'dashboard/assets/vendors/chart/chart.min.js' %}"></script>
+<script src="{% static 'dashboard/assets/js/admin.js' %}"></script>
+<script src="{% static 'dashboard/assets/js/contact.js' %}"></script>
+<script src="{% static 'dashboard/assets/vendors/calendar/moment.min.js' %}"></script>
+<script src="{% static 'dashboard/assets/vendors/calendar/fullcalendar.js' %}"></script>
+<script src="{% static 'dashboard/assets/vendors/switcher/switcher.js' %}"></script>
 </body>
+
 </html>

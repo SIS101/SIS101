@@ -1,3 +1,10 @@
+.popup-alert {
+	position: fixed;
+	margin: auto;
+	top: 0;
+	z-index: 100;
+}
+
 /*
 ======================================
   * CSS TABLE CONTENT *  
@@ -1936,7 +1943,6 @@ button.back-to-top {
 	display: inline-block;
 	font-size: 13px;
 	text-transform: capitalize;
-	font-family: ;
 	margin-right: 5px;
 }
 .media-post li a{
