@@ -5,6 +5,9 @@ class School(models.Model):
     name = models.CharField(max_length=200)
     code = models.CharField(max_length=200, default="")
 
+    def __str__(self):
+        return self.name
+
 class Programme(models.Model):
     TYPE_CHOICES = [
         ('certificate', 'Certificate'),
@@ -19,6 +22,9 @@ class Programme(models.Model):
     field_work = models.BooleanField(default=False)
     practicals = models.BooleanField(default=True)
     school = models.ForeignKey(School, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.name
 
 class Course(models.Model):
     YEAR_CHOICES = [
@@ -40,3 +46,6 @@ class Course(models.Model):
     programme = models.ForeignKey(Programme, on_delete=models.CASCADE)
     year = models.IntegerField(choices=YEAR_CHOICES, default=1)
     semester = models.IntegerField(choices=SEMESTER_CHOICES, default=1)
+    
+    def __str__(self):
+        return self.name

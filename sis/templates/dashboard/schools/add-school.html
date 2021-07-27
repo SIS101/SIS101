@@ -1,0 +1,14 @@
+{% extends 'dashboard/base.html' %}
+
+{% block title %}Schools{% endblock title %}
+
+{% block breadcrumb %}
+<li><a href="{% url 'schools:index' %}">Schools</a></li>
+<li>Add School</li>
+{% endblock breadcrumb %}
+
+{% block main %}
+
+{% include "form_snippet.html" with button="Create" form_method="post" form_action="" %}
+
+{% endblock main %}

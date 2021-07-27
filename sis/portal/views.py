@@ -1,9 +1,11 @@
 from django.shortcuts import render
 from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.http import HttpResponseRedirect
 from django.urls import reverse
 
+@login_required
 def dashboard(request):
     template="dashboard/base.html"
     context={}
@@ -27,11 +29,10 @@ def login_page(request):
         else:
             messages.error(request, 'ID or Password incorrect')
             return HttpResponseRedirect(reverse('portal:login'))
-    else:
-        context["next"]="/"
 
     return render(request, template, context)
 
+@login_required
 def logout_user(request):
     logout(request)
     messages.warning(request, 'You have logged out!')

@@ -2,6 +2,8 @@ from django import forms
 from schools.models import Programme
 
 class ApplicationForm(forms.Form):
+
+    #Personal details
     MARITAL_STATUS_CHOICES = [
         ('single', 'Single'),
         ('married', 'Married')
@@ -11,24 +13,25 @@ class ApplicationForm(forms.Form):
         ('female', 'Female'),
         ('other', 'Other')
     ]
-
     first_name = forms.CharField(max_length=200, widget=forms.TextInput(attrs={"class":"form-control"}))
     last_name = forms.CharField(max_length=200, widget=forms.TextInput(attrs={"class":"form-control"}))
     other_names = forms.CharField(max_length=200, widget=forms.TextInput(attrs={"class":"form-control"}))
-    email = forms.EmailField(widget=forms.TextInput(attrs={"class":"form-control"}))
-
-    marital_status = forms.ChoiceField(choices=MARITAL_STATUS_CHOICES, initial="single", widget=forms.Select(attrs={"class":"form-control"}))
-    gender = forms.ChoiceField(choices=GENDER_CHOICES, initial="male")
     date_of_birth = forms.DateField(widget=forms.DateInput(attrs={"class":"form-control"}, format="Y-m-d"))
+    place_of_birth = forms.CharField(max_length=200, widget=forms.TextInput(attrs={"class": "form-control"}))
     nationality = forms.CharField(max_length=200, initial="zambia", widget=forms.TextInput(attrs={"class":"form-control"}))
-    national_id = forms.CharField(max_length=200, widget=forms.TextInput(attrs={"class":"form-control"}))
+    gender = forms.ChoiceField(choices=GENDER_CHOICES, initial="male")
+    national_id_or_passport = forms.CharField(max_length=200, widget=forms.TextInput(attrs={"class":"form-control"}))
+    phone = forms.CharField(max_length=200, widget=forms.TextInput(attrs={"class":"form-control"}))
+    email = forms.EmailField(widget=forms.TextInput(attrs={"class":"form-control"}))
+    marital_status = forms.ChoiceField(choices=MARITAL_STATUS_CHOICES, initial="single", widget=forms.Select(attrs={"class":"form-control"}))
 
+    #Address
     province = forms.CharField(max_length=200, widget=forms.TextInput(attrs={"class":"form-control"}))
     town = forms.CharField(max_length=200, widget=forms.TextInput(attrs={"class":"form-control"}))
     physical_address = forms.CharField(max_length=200, widget=forms.TextInput(attrs={"class":"form-control"}))
     postal_address = forms.CharField(max_length=200, widget=forms.TextInput(attrs={"class":"form-control"}))
-    phone = forms.CharField(max_length=200, widget=forms.TextInput(attrs={"class":"form-control"}))
 
+    #Admissions
     ADMISSION_TYPE_CHOICES = [
         ('undergraduate', 'Undergraduate'),
         ('diploma', 'Diploma'),
@@ -41,22 +44,55 @@ class ApplicationForm(forms.Form):
         ('part_time', 'Part Time'),
         ('distance', 'Distance')
     ]
-    QUALIFICATION_CHOICES = [
-        ('high_school', 'Grade 12'),
-        ('diploma', 'Diploma'),
-        ('degree', 'Degree'),
-        ('masters', 'Masters'),
-        ('phd', 'Phd')
-    ]
 
     PROGRAMME_CHOICES = []
     for a in Programme.objects.all():
-        PROGRAMME_CHOICES.append((a.name, a.name))
+        PROGRAMME_CHOICES.append((a.pk, a.name))
     
     admission_type = forms.ChoiceField(choices=ADMISSION_TYPE_CHOICES, initial="undergraduate", widget=forms.Select(attrs={"class":"form-control"}))
-    programme = forms.ChoiceField(choices=PROGRAMME_CHOICES)
-    highest_qualification = forms.ChoiceField(choices=QUALIFICATION_CHOICES, initial="high_school", widget=forms.Select(attrs={"class":"form-control"}))
+    first_choice = forms.ChoiceField(choices=PROGRAMME_CHOICES)
+    second_choice = forms.ChoiceField(choices=PROGRAMME_CHOICES)
+    third_choice = forms.ChoiceField(choices=PROGRAMME_CHOICES)
+    
+    #Secondary
+    GRADE_CHOICES = [
+        (0, "N/A"),
+        (1, 1),
+        (2, 2),
+        (3, 3),
+        (4, 4),
+        (5, 5),
+        (6, 6),
+        (7, 7),
+        (8, 8),
+        (9, 9)
+    ]
+    secondary_school_attended = forms.CharField(max_length=200, widget=forms.TextInput(attrs={"class":"form-control"}))
+    english_language = forms.ChoiceField(choices=GRADE_CHOICES)
+    mathematics = forms.ChoiceField(choices=GRADE_CHOICES)
+    biology = forms.ChoiceField(choices=GRADE_CHOICES)
+    science = forms.ChoiceField(choices=GRADE_CHOICES)
+    physics = forms.ChoiceField(choices=GRADE_CHOICES)
+    chemistry = forms.ChoiceField(choices=GRADE_CHOICES)
+    agricultural_science = forms.ChoiceField(choices=GRADE_CHOICES)
+    history = forms.ChoiceField(choices=GRADE_CHOICES)
+    commerce = forms.ChoiceField(choices=GRADE_CHOICES)
+    civic_education = forms.ChoiceField(choices=GRADE_CHOICES)
+    local_language = forms.ChoiceField(choices=GRADE_CHOICES)
+    food_nutrition_and_home_management = forms.ChoiceField(choices=GRADE_CHOICES)
+    religious_education = forms.ChoiceField(choices=GRADE_CHOICES)
+    english_literature = forms.ChoiceField(choices=GRADE_CHOICES)
+    principles_of_accounts = forms.ChoiceField(choices=GRADE_CHOICES)
+    human_and_social_biology = forms.ChoiceField(choices=GRADE_CHOICES)
+    geometric_and_mechanical_drawing = forms.ChoiceField(choices=GRADE_CHOICES)
+    metal_work = forms.ChoiceField(choices=GRADE_CHOICES)
+    geography = forms.ChoiceField(choices=GRADE_CHOICES)
+    nutrition = forms.ChoiceField(choices=GRADE_CHOICES)
+    wood_word = forms.ChoiceField(choices=GRADE_CHOICES)
+    art = forms.ChoiceField(choices=GRADE_CHOICES)
+    information_technology = forms.ChoiceField(choices=GRADE_CHOICES)
 
+    #Next of kin
     next_of_kin_full_name = forms.CharField(max_length=200, widget=forms.TextInput(attrs={"class":"form-control"}))
     next_of_kin_email = forms.EmailField(max_length=200, widget=forms.TextInput(attrs={"class":"form-control"}))
     next_of_kin_phone = forms.CharField(max_length=200, widget=forms.TextInput(attrs={"class":"form-control"}))

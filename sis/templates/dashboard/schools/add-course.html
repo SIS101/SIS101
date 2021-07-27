@@ -1,0 +1,16 @@
+{% extends 'dashboard/base.html' %}
+
+{% block title %}Schools - Add Course{% endblock title %}
+
+{% block breadcrumb %}
+<li><a href="{% url 'schools:index' %}">Schools</a></li>
+<li><a href="{% url 'schools:view-school' school_id=programme.school.pk %}">{{ programme.school.name }}</a></li>
+<li><a href="{% url 'schools:view-programme' programme_id=programme.pk %}">{{ programme.name }}</a></li>
+<li>Add Course</li>
+{% endblock breadcrumb %}
+
+{% block main %}
+
+{% include "form_snippet.html" with button="Add" form_title="Add Course" form_method="post" form_action="" %}
+
+{% endblock main %}

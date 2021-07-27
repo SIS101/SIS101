@@ -22,7 +22,13 @@ class Student(models.Model):
         ('masters', 'Masters'),
         ('phd', 'Phd')
     ]
+    SCHOOL_STATUS_CHOICES = [
+        ('pending', 'Pending'),
+        ('admitted', 'Admitted'),
+        ('declined', 'Declined')
+    ]
     profile = models.OneToOneField(Profile, on_delete=models.CASCADE)
     admission_type = models.CharField(max_length=200, choices=ADMISSION_TYPE_CHOICES, default="undergraduate")
     programme = models.ForeignKey(Programme, on_delete=models.CASCADE)
     highest_qualification = models.CharField(max_length=200, choices=QUALIFICATION_CHOICES, default="high_school")
+    school_status = models.CharField(max_length=200, choices=SCHOOL_STATUS_CHOICES, default="pending")

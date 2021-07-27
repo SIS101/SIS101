@@ -1,0 +1,36 @@
+{% extends 'dashboard/base.html' %}
+{% block title %}Programme{% endblock title %}
+
+{% block breadcrumb %}
+<li><a href="{% url 'schools:index' %}">Schools</a></li>
+<li><a href="{% url 'schools:view-school' school_id=programme.school.pk %}">{{ programme.school.name }}</a></li>
+<li>{{ programme.name }}</li>
+{% endblock breadcrumb %}
+
+{% block main %}
+
+<div class="widget-box">
+    <div class="wc-title">
+        <h4>{{ programme.name }}</h4>
+    </div>
+    <a href="{% url 'schools:add-course' programme_id=programme.pk %}" class="btn">Add Course</a>
+    <div class="widget-inner">
+        <div class="orders-list">
+            <ul>
+                {% for course in courses %}
+                <li>
+                    <span class="orders-title">
+                        <a href="" class="orders-title-name">{{ course.name }} </a>
+                        <!--<span class="orders-info">Order #02357 | Date 12/08/2019</span>-->
+                    </span>
+                    <span class="orders-btn">
+                        <a href="#" class="btn button-sm blue">View</a>
+                    </span>
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+</div>
+
+{% endblock main %}
