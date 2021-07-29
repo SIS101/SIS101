@@ -29,6 +29,9 @@ def login_page(request):
         else:
             messages.error(request, 'ID or Password incorrect')
             return HttpResponseRedirect(reverse('portal:login'))
+    
+    elif request.user.is_authenticated:
+        return HttpResponseRedirect(reverse('portal:dashboard'))
 
     return render(request, template, context)
 

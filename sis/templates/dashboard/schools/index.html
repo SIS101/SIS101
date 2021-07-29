@@ -21,6 +21,7 @@
                     </span>
                     <span class="orders-btn">
                         <a href="{% url 'schools:view-school' school_id=school.pk %}" class="btn button-sm blue">View</a>
+                        <a href="{% url 'schools:delete' object_type='school' object_id=school.pk %}" class="btn button-sm red">Delete</a>
                     </span>
                 </li>
                 {% endfor %}

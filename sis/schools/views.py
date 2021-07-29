@@ -1,6 +1,9 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
+from django.http import HttpResponseRedirect
+from django.contrib.auth.models import User
+from django.urls import reverse
 from . import models, forms
 
 # Create your views here.
@@ -78,6 +81,7 @@ def view_programme(request, programme_id):
 
     return render(request, template, context)
 
+@login_required
 def add_course(request, programme_id):
     template="dashboard/schools/add-course.html"
     context={}
@@ -97,3 +101,54 @@ def add_course(request, programme_id):
             context["form"]=pform
 
     return render(request, template, context)
+
+@login_required
+def edit_course(request, programme_id, course_id):
+    user = get_object_or_404(User, pk=request.user.id)
+
+    print(user.has_perm("schools.change_course"))
+    template="dashboard/schools/edit-course.html"
+    context={}
+
+    course = models.Course.objects.get(pk=course_id)
+    form = forms.CourseForm(instance=course)
+    context["form"]=form
+    programme = models.Programme.objects.get(pk=programme_id)
+    context["programme"]=programme
+
+    if request.method == "POST":
+        if user.has_perm("schools.change_course"):
+            pform = forms.CourseForm(request.POST, instance=course)
+            if pform.is_valid():
+                pform.save()
+                messages.success(request, "Course successfully updated!")
+                return HttpResponseRedirect(reverse("schools:edit-course", kwargs={"programme_id":programme_id, "course_id":course_id}))
+            else:
+                messages.error(request, "Failed to update Course.")
+                context["form"]=pform
+        else:
+            messages.error(request, "Insufficient privilages.")
+
+    return render(request, template, context)
+
+@login_required
+def delete_object(request, object_type, object_id):
+    if object_type == "school":
+        models.School.objects.get(pk=object_id).delete()
+        messages.success(request, "Deleted!")
+        return HttpResponseRedirect(reverse("schools:index"))
+    elif object_type == "programme":
+        obj = models.Programme.objects.get(pk=object_id)
+        bid = obj.school.pk
+        obj.delete()
+        messages.success(request, "Deleted!")
+        return HttpResponseRedirect(reverse("schools:view-school", kwargs={"school_id": bid}))
+    elif object_type == "course":
+        obj = models.Course.objects.get(pk=object_id)
+        bid = obj.programme.pk
+        obj.delete()
+        messages.success(request, "Deleted!")
+        return HttpResponseRedirect(reverse("schools:view-programme", kwargs={"programme_id": bid}))
+    else:
+        messages.error(request, "Could not delete object")
+        return HttpResponseRedirect(reverse("schools:index"))

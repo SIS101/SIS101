@@ -44,15 +44,11 @@ class ApplicationForm(forms.Form):
         ('part_time', 'Part Time'),
         ('distance', 'Distance')
     ]
-
-    PROGRAMME_CHOICES = []
-    for a in Programme.objects.all():
-        PROGRAMME_CHOICES.append((a.pk, a.name))
     
     admission_type = forms.ChoiceField(choices=ADMISSION_TYPE_CHOICES, initial="undergraduate", widget=forms.Select(attrs={"class":"form-control"}))
-    first_choice = forms.ChoiceField(choices=PROGRAMME_CHOICES)
-    second_choice = forms.ChoiceField(choices=PROGRAMME_CHOICES)
-    third_choice = forms.ChoiceField(choices=PROGRAMME_CHOICES)
+    first_choice = forms.ModelChoiceField(queryset=Programme.objects.values_list('name', flat=True).distinct(), widget=forms.Select(attrs={'class':'form-control'}))
+    second_choice = forms.ModelChoiceField(queryset=Programme.objects.values_list('name', flat=True).distinct(), widget=forms.Select(attrs={'class':'form-control'}))
+    third_choice = forms.ModelChoiceField(queryset=Programme.objects.values_list('name', flat=True).distinct(), widget=forms.Select(attrs={'class':'form-control'}))
     
     #Secondary
     GRADE_CHOICES = [
