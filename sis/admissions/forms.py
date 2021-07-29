@@ -21,13 +21,13 @@ class ApplicationForm(forms.Form):
     nationality = forms.CharField(max_length=200, initial="zambia", widget=forms.TextInput(attrs={"class":"form-control"}))
     gender = forms.ChoiceField(choices=GENDER_CHOICES, initial="male")
     national_id_or_passport = forms.CharField(max_length=200, widget=forms.TextInput(attrs={"class":"form-control"}))
-    phone = forms.CharField(max_length=200, widget=forms.TextInput(attrs={"class":"form-control"}))
-    email = forms.EmailField(widget=forms.TextInput(attrs={"class":"form-control"}))
     marital_status = forms.ChoiceField(choices=MARITAL_STATUS_CHOICES, initial="single", widget=forms.Select(attrs={"class":"form-control"}))
 
     #Address
     province = forms.CharField(max_length=200, widget=forms.TextInput(attrs={"class":"form-control"}))
     town = forms.CharField(max_length=200, widget=forms.TextInput(attrs={"class":"form-control"}))
+    phone = forms.CharField(max_length=200, widget=forms.TextInput(attrs={"class":"form-control"}))
+    email = forms.EmailField(widget=forms.TextInput(attrs={"class":"form-control"}))
     physical_address = forms.CharField(max_length=200, widget=forms.TextInput(attrs={"class":"form-control"}))
     postal_address = forms.CharField(max_length=200, widget=forms.TextInput(attrs={"class":"form-control"}))
 
@@ -84,9 +84,14 @@ class ApplicationForm(forms.Form):
     metal_work = forms.ChoiceField(choices=GRADE_CHOICES)
     geography = forms.ChoiceField(choices=GRADE_CHOICES)
     nutrition = forms.ChoiceField(choices=GRADE_CHOICES)
-    wood_word = forms.ChoiceField(choices=GRADE_CHOICES)
+    wood_work = forms.ChoiceField(choices=GRADE_CHOICES)
     art = forms.ChoiceField(choices=GRADE_CHOICES)
     information_technology = forms.ChoiceField(choices=GRADE_CHOICES)
+
+    #Uploads
+    results_transcript = forms.FileField(widget=forms.FileInput(attrs={"class":"form-control"}))
+    nrc = forms.FileField(widget=forms.FileInput(attrs={"class":"form-control"}))
+    passport_photo = forms.FileField(widget=forms.FileInput(attrs={"class":"form-control"}))
 
     #Next of kin
     next_of_kin_full_name = forms.CharField(max_length=200, widget=forms.TextInput(attrs={"class":"form-control"}))

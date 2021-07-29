@@ -4,6 +4,536 @@
 
 {% block main %}
 
-{% include "form_snippet.html" with form=application_form button="Submit" form_title="Online Application Form" form_action="" form_method="POST" %}
+<div class="account-form-inner">
+    <div class="">
+        <div class="heading-bx left">
+            <h2 class="title-head">Application form</h2>
+        </div>	
+        <form action="" method="post">
+            {% csrf_token %}
+            <div class="card bg-secondary mt-3 mb-3 style="max-width: 30rem;"">
+            <label class="ml-2 mt-2 mb-3 card-title">Personal Details</label>
+                <div class="row ml-2 mr-2">        
+                    <div class="col-lg-3 col-sm-6">
+                        <div class="form-group">
+                            {{ application_form.first_name.label_tag }}
+                            <div class="input-group">
+                                {{ application_form.first_name }}
+                            </div>
+                                {{ application_form.last_name.errors }}
+                        </div>
+                    </div><br>
+
+                    <div class="col-lg-3 col-sm-6">
+                        <div class="form-group">
+                            {{ application_form.last_name.label_tag }}
+                            <div class="input-group">
+                                {{ application_form.last_name }}
+                            </div>
+                                {{ application_form.last_name.errors }}
+                        </div>
+                    </div><br>
+                    <div class="col-lg-3 col-sm-6">
+                        <div class="form-group">
+                            {{ application_form.other_names.label_tag }}
+                            <div class="input-group">
+                                {{ application_form.other_names }}
+                            </div>
+                                {{ application_form.other_names.errors }}
+                        </div>
+                    </div><br>
+                </div>
+                <div class="row ml-2 mr-2">
+                    <div class="col-lg-3 col-sm-6">
+                        <div class="form-group">
+                            {{ application_form.date_of_birth.label_tag }}
+                            <div class="input-group">
+                                {{ application_form.date_of_birth }}
+                            </div>
+                                {{ application_form.date_of_birth.errors }}
+                        </div>
+                    </div><br>
+                    
+
+                    <div class="col-lg-3 col-sm-6">
+                        <div class="form-group">
+                            {{ application_form.place_of_birth.label_tag }}
+                            <div class="input-group">
+                                {{ application_form.place_of_birth }}
+                            </div>
+                                {{ application_form.place_of_birth.errors }}
+                        </div>
+                    </div><br>
+
+                    <div class="col-lg-3 col-sm-6">
+                        <div class="form-group">
+                            {{ application_form.nationality.label_tag }}
+                            <div class="input-group">
+                                {{ application_form.nationality }}
+                            </div>
+                                {{ application_form.nationality.errors }}
+                        </div>
+                    </div><br>
+                </div>
+                <div class="row ml-2 mr-2">
+                    <div class="col-lg-3 col-sm-6">
+                        <div class="form-group">
+                            {{ application_form.gender.label_tag }}
+                            <div class="input-group">
+                                {{ application_form.gender }}
+                            </div>
+                                {{ application_form.gender.errors }}
+                        </div>
+                    </div><br>
+                    <div class="col-lg-3 col-sm-6">
+                        <div class="form-group">
+                            {{ application_form.marital_status.label_tag }}
+                            <div class="input-group">
+                                {{ application_form.marital_status }}
+                            </div>
+                                {{ application_form.marital_status.errors }}
+                        </div>
+                    </div><br>
+
+                    <div class="col-lg-3 col-sm-6">
+                        <div class="form-group">
+                            {{ application_form.national_id_or_passport.label_tag }}
+                            <div class="input-group">
+                                {{ application_form.national_id_or_passport }}
+                            </div>
+                                {{ application_form.national_id_or_passport.errors }}
+                        </div>
+                    </div><br>
+                </div>
+                <div class="card bg-secondary">
+                <label class="ml-2 mt-2 mb-3 card-title">Addresses</label>
+                    <div class="row ml-2 mr-2">
+                        <div class="col-lg-3 col-sm-6">
+                            <div class="form-group">
+                                {{ application_form.province.label_tag }}
+                                <div class="input-group">
+                                    {{ application_form.province }}
+                                </div>
+                                    {{ application_form.province.errors }}
+                            </div>
+                        </div><br> 
+                        <div class="col-lg-3 col-sm-6">
+                            <div class="form-group">
+                                {{ application_form.town.label_tag }}
+                                <div class="input-group">
+                                    {{ application_form.town }}
+                                </div>
+                                    {{ application_form.town.errors }}
+                            </div>
+                        </div><br>  
+                        <div class="col-lg-3 col-sm-6">
+                            <div class="form-group">
+                                {{ application_form.phone.label_tag }}
+                                <div class="input-group">
+                                    {{ application_form.phone }}
+                                </div>
+                                    {{ application_form.phone.errors }}
+                            </div>
+                        </div><br>
+                    </div>
+                    <div class="row ml-2 mr-2">
+                        <div class="col-lg-3 col-sm-6">
+                            <div class="form-group">
+                                {{ application_form.email.label_tag }}
+                                <div class="input-group">
+                                    {{ application_form.email }}
+                                </div>
+                                    {{ application_form.email.errors }}
+                            </div>
+                        </div><br>
+                        <div class="col-lg-3 col-sm-6">
+                            <div class="form-group">
+                                {{ application_form.physical_address.label_tag }}
+                                <div class="input-group">
+                                    {{ application_form.physical_address }}
+                                </div>
+                                    {{ application_form.physical_address.errors }}
+                            </div>
+                        </div><br>  
+                        <div class="col-lg-3 col-sm-6">
+                            <div class="form-group">
+                                {{ application_form.postal_address.label_tag }}
+                                <div class="input-group">
+                                    {{ application_form.postal_address }}
+                                </div>
+                                    {{ application_form.postal_address.errors }}
+                            </div>
+                        </div><br> 
+                    </div>                    
+                </div>
+                <div class="card bg-secondary">
+                <label class="ml-2 mt-2 mb-3 card-title">Admission Type</label>
+                    <div class="row ml-2 mr-2">
+                        <div class="col-lg-3 col-sm-6">
+                            <div class="form-group">
+                                {{ application_form.admission_type.label_tag }}
+                                <div class="input-group">
+                                    {{ application_form.admission_type }}
+                                </div>
+                                    {{ application_form.admission_type.errors }}
+                            </div>
+                        </div><br>
+                         <div class="col-lg-3 col-sm-6">
+                            <div class="form-group">
+                                {{ application_form.first_choice.label_tag }}
+                                <div class="input-group">
+                                    {{ application_form.first_choice }}
+                                </div>
+                                    {{ application_form.first_choice.errors }}
+                            </div>
+                        </div><br>
+                         <div class="col-lg-3 col-sm-6">
+                            <div class="form-group">
+                                {{ application_form.second_choice.label_tag }}
+                                <div class="input-group">
+                                    {{ application_form.second_choice }}
+                                </div>
+                                    {{ application_form.second_choice.errors }}
+                            </div>
+                        </div><br>
+                        <div class="col-lg-3 col-sm-6">
+                            <div class="form-group">
+                                {{ application_form.third_choice.label_tag }}
+                                <div class="input-group">
+                                    {{ application_form.third_choice }}
+                                </div>
+                                    {{ application_form.third_choice.errors }}
+                            </div>
+                        </div><br>
+                    </div>
+                </div>
+                 <div class="card bg-secondary">
+                <label class="ml-2 mt-2 mb-3 card-title">Secondary School Certificate Results</label>
+                    <div class="row ml-2 mr-2">
+                        <div class="col-lg-3 col-sm-6">
+                            <div class="form-group">
+                                {{ application_form.secondary_school_attended.label_tag }}
+                                <div class="input-group">
+                                    {{ application_form.secondary_school_attended }}
+                                </div>
+                                    {{ application_form.secondary_school_attended.errors }}
+                            </div>
+                        </div><br>
+                        <div class="col-lg-3 col-sm-6">
+                            <div class="form-group">
+                                {{ application_form.english_language.label_tag }}
+                                <div class="input-group">
+                                    {{ application_form.english_language }}
+                                </div>
+                                    {{ application_form.english_language.errors }}
+                            </div>
+                        </div><br>
+                        <div class="col-lg-3 col-sm-6">
+                            <div class="form-group">
+                                {{ application_form.mathematics.label_tag }}
+                                <div class="input-group">
+                                    {{ application_form.mathematics }}
+                                </div>
+                                    {{ application_form.mathematics.errors }}
+                            </div>
+                        </div><br>
+                        <div class="col-lg-3 col-sm-6">
+                            <div class="form-group">
+                                {{ application_form.biology.label_tag }}
+                                <div class="input-group">
+                                    {{ application_form.biology }}
+                                </div>
+                                    {{ application_form.biology.errors }}
+                            </div>
+                        </div><br>
+                        <div class="col-lg-3 col-sm-6">
+                            <div class="form-group">
+                                {{ application_form.science.label_tag }}
+                                <div class="input-group">
+                                    {{ application_form.science }}
+                                </div>
+                                    {{ application_form.science.errors }}
+                            </div>
+                        </div><br>
+                        <div class="col-lg-3 col-sm-6">
+                            <div class="form-group">
+                                {{ application_form.physics.label_tag }}
+                                <div class="input-group">
+                                    {{ application_form.physics }}
+                                </div>
+                                    {{ application_form.physics.errors }}
+                            </div>
+                        </div><br>
+                        <div class="col-lg-3 col-sm-6">
+                            <div class="form-group">
+                                {{ application_form.chemistry.label_tag }}
+                                <div class="input-group">
+                                    {{ application_form.chemistry }}
+                                </div>
+                                    {{ application_form.chemistry.errors }}
+                            </div>
+                        </div><br>
+                        <div class="col-lg-3 col-sm-6">
+                            <div class="form-group">
+                                {{ application_form.agricultural_science.label_tag }}
+                                <div class="input-group">
+                                    {{ application_form.agricultural_science }}
+                                </div>
+                                    {{ application_form.agricultural_science.errors }}
+                            </div>
+                        </div><br>
+                        <div class="col-lg-3 col-sm-6">
+                            <div class="form-group">
+                                {{ application_form.history.label_tag }}
+                                <div class="input-group">
+                                    {{ application_form.history }}
+                                </div>
+                                    {{ application_form.history.errors }}
+                            </div>
+                        </div><br>
+                        <div class="col-lg-3 col-sm-6">
+                            <div class="form-group">
+                                {{ application_form.commerce.label_tag }}
+                                <div class="input-group">
+                                    {{ application_form.commerce }}
+                                </div>
+                                    {{ application_form.commerce.errors }}
+                            </div>
+                        </div><br>
+                        <div class="col-lg-3 col-sm-6">
+                            <div class="form-group">
+                                {{ application_form.civic_education.label_tag }}
+                                <div class="input-group">
+                                    {{ application_form.civic_education }}
+                                </div>
+                                    {{ application_form.civic_education.errors }}
+                            </div>
+                        </div><br>
+                        <div class="col-lg-3 col-sm-6">
+                            <div class="form-group">
+                                {{ application_form.local_language.label_tag }}
+                                <div class="input-group">
+                                    {{ application_form.local_language }}
+                                </div>
+                                    {{ application_form.local_language.errors }}
+                            </div>
+                        </div><br>
+                        <div class="col-lg-3 col-sm-6">
+                            <div class="form-group">
+                                {{ application_form.food_nutrition_and_home_management.label_tag }}
+                                <div class="input-group">
+                                    {{ application_form.food_nutrition_and_home_management }}
+                                </div>
+                                    {{ application_form.food_nutrition_and_home_management.errors }}
+                            </div>
+                        </div><br>
+                        <div class="col-lg-3 col-sm-6">
+                            <div class="form-group">
+                                {{ application_form.religious_education.label_tag }}
+                                <div class="input-group">
+                                    {{ application_form.religious_education }}
+                                </div>
+                                    {{ application_form.religious_education.errors }}
+                            </div>
+                        </div><br>
+                        <div class="col-lg-3 col-sm-6">
+                            <div class="form-group">
+                                {{ application_form.english_literature.label_tag }}
+                                <div class="input-group">
+                                    {{ application_form.english_literature }}
+                                </div>
+                                    {{ application_form.english_literature.errors }}
+                            </div>
+                        </div><br>
+                        <div class="col-lg-3 col-sm-6">
+                            <div class="form-group">
+                                {{ application_form.principles_of_accounts.label_tag }}
+                                <div class="input-group">
+                                    {{ application_form.principles_of_accounts }}
+                                </div>
+                                    {{ application_form.principles_of_accounts.errors }}
+                            </div>
+                        </div><br>
+                        <div class="col-lg-3 col-sm-6">
+                            <div class="form-group">
+                                {{ application_form.human_and_social_biology.label_tag }}
+                                <div class="input-group">
+                                    {{ application_form.human_and_social_biology }}
+                                </div>
+                                    {{ application_form.human_and_social_biology.errors }}
+                            </div>
+                        </div><br>
+                        <div class="col-lg-3 col-sm-6">
+                            <div class="form-group">
+                                {{ application_form.geometric_and_mechanical_drawing.label_tag }}
+                                <div class="input-group">
+                                    {{ application_form.geometric_and_mechanical_drawing }}
+                                </div>
+                                    {{ application_form.geometric_and_mechanical_drawing.errors }}
+                            </div>
+                        </div><br>
+                        <div class="col-lg-3 col-sm-6">
+                            <div class="form-group">
+                                {{ application_form.metal_work.label_tag }}
+                                <div class="input-group">
+                                    {{ application_form.metal_work }}
+                                </div>
+                                    {{ application_form.metal_work.errors }}
+                            </div>
+                        </div><br>
+                        <div class="col-lg-3 col-sm-6">
+                            <div class="form-group">
+                                {{ application_form.geography.label_tag }}
+                                <div class="input-group">
+                                    {{ application_form.geography }}
+                                </div>
+                                    {{ application_form.geography.errors }}
+                            </div>
+                        </div><br>
+                        <div class="col-lg-3 col-sm-6">
+                            <div class="form-group">
+                                {{ application_form.nutrition.label_tag }}
+                                <div class="input-group">
+                                    {{ application_form.nutrition }}
+                                </div>
+                                    {{ application_form.nutrition.errors }}
+                            </div>
+                        </div><br>
+                        <div class="col-lg-3 col-sm-6">
+                            <div class="form-group">
+                                {{ application_form.wood_work.label_tag }}
+                                <div class="input-group">
+                                    {{ application_form.wood_work }}
+                                </div>
+                                    {{ application_form.wood_work.errors }}
+                            </div>
+                        </div><br>
+                        <div class="col-lg-3 col-sm-6">
+                            <div class="form-group">
+                                {{ application_form.art.label_tag }}
+                                <div class="input-group">
+                                    {{ application_form.art }}
+                                </div>
+                                    {{ application_form.art.errors }}
+                            </div>
+                        </div><br>
+                        <div class="col-lg-3 col-sm-6">
+                            <div class="form-group">
+                                {{ application_form.information_technology.label_tag }}
+                                <div class="input-group">
+                                    {{ application_form.information_technology }}
+                                </div>
+                                    {{ application_form.information_technology.errors }}
+                            </div>
+                        </div><br>
+                    </div>
+                </div>
+                <div class="card bg-secondary">
+                <label class="ml-2 mt-2 mb-3 card-title">Upload your results NRC and Passport size photo</label>
+                    <div class="row ml-2 mr-2">
+                        <div class="col-lg-3 col-sm-6">
+                            <div class="form-group">
+                                {{ application_form.results_transcript.label_tag }}
+                                <div class="input-group">
+                                    {{ application_form.results_transcript }}
+                                </div>
+                                    {{ application_form.results_transcript.errors }}
+                            </div>
+                        </div><br>
+                        <div class="col-lg-3 col-sm-6">
+                            <div class="form-group">
+                                {{ application_form.nrc.label_tag }}
+                                <div class="input-group">
+                                    {{ application_form.nrc }}
+                                </div>
+                                    {{ application_form.nrc.errors }}
+                            </div>
+                        </div><br>
+                        <div class="col-lg-3 col-sm-6">
+                            <div class="form-group">
+                                {{ application_form.passport_photo.label_tag }}
+                                <div class="input-group">
+                                    {{ application_form.passport_photo }}
+                                </div>
+                                    {{ application_form.passport_photo.errors }}
+                            </div>
+                        </div><br>
+                    </div>
+                </div>
+                <div class="card bg-secondary">
+                <label class="ml-2 mt-2 mb-3 card-title">Next of Kin</label>
+                    <div class="row ml-2 mr-2">
+                        <div class="col-lg-3 col-sm-6">
+                            <div class="form-group">
+                                {{ application_form.next_of_kin_full_name.label_tag }}
+                                <div class="input-group">
+                                    {{ application_form.next_of_kin_full_name }}
+                                </div>
+                                    {{ application_form.next_of_kin_full_name.errors }}
+                            </div>
+                        </div><br>
+                        <div class="col-lg-3 col-sm-6">
+                            <div class="form-group">
+                                {{ application_form.next_of_kin_email.label_tag }}
+                                <div class="input-group">
+                                    {{ application_form.next_of_kin_email }}
+                                </div>
+                                    {{ application_form.next_of_kin_email.errors }}
+                            </div>
+                        </div><br>
+                        <div class="col-lg-3 col-sm-6">
+                            <div class="form-group">
+                                {{ application_form.next_of_kin_phone.label_tag }}
+                                <div class="input-group">
+                                    {{ application_form.next_of_kin_phone }}
+                                </div>
+                                    {{ application_form.next_of_kin_phone.errors }}
+                            </div>
+                        </div><br>
+                         <div class="col-lg-3 col-sm-6">
+                            <div class="form-group">
+                                {{ application_form.next_of_kin_province.label_tag }}
+                                <div class="input-group">
+                                    {{ application_form.next_of_kin_province }}
+                                </div>
+                                    {{ application_form.next_of_kin_province.errors }}
+                            </div>
+                        </div><br>
+                         <div class="col-lg-3 col-sm-6">
+                            <div class="form-group">
+                                {{ application_form.next_of_kin_town.label_tag }}
+                                <div class="input-group">
+                                    {{ application_form.next_of_kin_town }}
+                                </div>
+                                    {{ application_form.next_of_kin_town.errors }}
+                            </div>
+                        </div><br>
+                        <div class="col-lg-3 col-sm-6">
+                            <div class="form-group">
+                                {{ application_form.next_of_kin_physical_address.label_tag }}
+                                <div class="input-group">
+                                    {{ application_form.next_of_kin_physical_address }}
+                                </div>
+                                    {{ application_form.next_of_kin_physical_address.errors }}
+                            </div>
+                        </div><br>
+                         <div class="col-lg-3 col-sm-6">
+                            <div class="form-group">
+                                {{ application_form.next_of_kin_postal_address.label_tag }}
+                                <div class="input-group">
+                                    {{ application_form.next_of_kin_postal_address }}
+                                </div>
+                                    {{ application_form.next_of_kin_postal_address.errors }}
+                            </div>
+                        </div><br>
+                    </div>
+                </div>
+                <div class="ml-5 mt-3 m-b30">
+                    <button name="submit" type="submit" value="Submit" class="btn button-md">Submit</button>
+                </div>
+            </div>    
+        </form>
+    </div>
+</div>
 
 {% endblock main %}
