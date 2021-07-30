@@ -34,7 +34,7 @@ SECRET_KEY = 'django-insecure-3q(mrrbb2b_d8sqm6^1s=69v*(s4tw(j*dxa*+_gbkw6ghd%d$
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["*"]
 
 
 # Application definition
@@ -97,8 +97,8 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'kweb',
         'USER': 'root',
-        'PASSWORD': '',
-        'HOST': 'localhost',
+        'PASSWORD': '@cnuit',
+        'HOST': '192.168.0.114',
         'PORT': 3306,
         'OPTIONS': {
             'init_command': 'SET sql_mode="STRICT_TRANS_TABLES"',

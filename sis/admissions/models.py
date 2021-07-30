@@ -2,8 +2,8 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.db.models.signals import post_save
 from django.dispatch import receiver
+from django.utils import timezone
 from schools.models import School
-
 class Profile(models.Model):
     MARITAL_STATUS_CHOICES = [
         ('single', 'Single'),
@@ -23,7 +23,7 @@ class Profile(models.Model):
     other_names = models.CharField(max_length=200)
     marital_status = models.CharField(max_length=200, choices=MARITAL_STATUS_CHOICES, default="single")
     gender = models.CharField(max_length=200, choices=GENDER_CHOICES, default="male")
-    date_of_birth = models.DateField()
+    date_of_birth = models.DateField(blank=True, null=True)
     nationality = models.CharField(max_length=200, default="zambia")
     national_id = models.CharField(max_length=200)
 
@@ -42,7 +42,7 @@ class Profile(models.Model):
     next_of_kin_postal_address = models.CharField(max_length=200)
 
     def __str__(self):
-        return self.user
+        return self.user.username
 
     @receiver(post_save, sender=User)
     def on_create_user(instance, created, **kwargs):
