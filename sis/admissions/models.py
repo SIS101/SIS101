@@ -1,5 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.db.models.signals import post_save
+from django.dispatch import receiver
 from schools.models import School
 
 class Profile(models.Model):
@@ -38,6 +40,18 @@ class Profile(models.Model):
     next_of_kin_town = models.CharField(max_length=200)
     next_of_kin_physical_address = models.CharField(max_length=200)
     next_of_kin_postal_address = models.CharField(max_length=200)
+
+    def __str__(self):
+        return self.user
+
+    @receiver(post_save, sender=User)
+    def on_create_user(instance, created, **kwargs):
+        if created:
+            Profile.objects.create(user=instance)
+    
+    @receiver(post_save, sender=User)
+    def save_user_profile(sender, instance, **kwargs):
+        instance.profile.save()
 
 class Staff(models.Model):
     POSITION_CHOICES = [

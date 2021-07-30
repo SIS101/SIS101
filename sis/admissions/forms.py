@@ -16,7 +16,7 @@ class ApplicationForm(forms.Form):
     first_name = forms.CharField(max_length=200, widget=forms.TextInput(attrs={"class":"form-control"}))
     last_name = forms.CharField(max_length=200, widget=forms.TextInput(attrs={"class":"form-control"}))
     other_names = forms.CharField(max_length=200, widget=forms.TextInput(attrs={"class":"form-control"}))
-    date_of_birth = forms.DateField(widget=forms.DateInput(attrs={"class":"form-control"}, format="Y-m-d"))
+    date_of_birth = forms.DateField(required=False, widget=forms.DateInput(attrs={"class":"form-control"}))
     place_of_birth = forms.CharField(max_length=200, widget=forms.TextInput(attrs={"class": "form-control"}))
     nationality = forms.CharField(max_length=200, initial="zambia", widget=forms.TextInput(attrs={"class":"form-control"}))
     gender = forms.ChoiceField(choices=GENDER_CHOICES, initial="male")
@@ -46,9 +46,9 @@ class ApplicationForm(forms.Form):
     ]
     
     admission_type = forms.ChoiceField(choices=ADMISSION_TYPE_CHOICES, initial="undergraduate", widget=forms.Select(attrs={"class":"form-control"}))
-    first_choice = forms.ModelChoiceField(queryset=Programme.objects.values_list('name', flat=True).distinct(), widget=forms.Select(attrs={'class':'form-control'}))
-    second_choice = forms.ModelChoiceField(queryset=Programme.objects.values_list('name', flat=True).distinct(), widget=forms.Select(attrs={'class':'form-control'}))
-    third_choice = forms.ModelChoiceField(queryset=Programme.objects.values_list('name', flat=True).distinct(), widget=forms.Select(attrs={'class':'form-control'}))
+    first_choice = forms.ModelChoiceField(queryset=Programme.objects.all(), widget=forms.Select(attrs={'class':'form-control'}))
+    second_choice = forms.ModelChoiceField(queryset=Programme.objects.all(), widget=forms.Select(attrs={'class':'form-control'}))
+    third_choice = forms.ModelChoiceField(queryset=Programme.objects.all(), widget=forms.Select(attrs={'class':'form-control'}))
     
     #Secondary
     GRADE_CHOICES = [
