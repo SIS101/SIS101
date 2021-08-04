@@ -1,0 +1,34 @@
+{% extends 'dashboard/base.html' %}
+{% block title %}Admissions{% endblock title %}
+{% block breadcrumb %}
+<li>Admissions</li>
+<li>Applicants</li>
+{% endblock breadcrumb %}
+{% block main %}
+
+<div class="widget-box">
+    <div class="wc-title">
+        <h4>Applicants</h4>
+    </div>
+    <div class="widget-inner">
+        <div class="orders-list">
+            <ul>
+                {% for applicant in applicants %}
+                <li>
+                    <span class="orders-title">
+                        <a href="{% url 'admissions:view-applicant' applicant_id=applicant.pk %}" class="orders-title-name">{{ applicant.profile.user.get_full_name }}</a>
+                        <span class="orders-info">{{ applicant.admission_type }} | {{ applicant.programme }}</span>
+                    </span>
+                    <span class="orders-btn">
+                        <a href="{% url 'admissions:view-applicant' applicant_id=applicant.pk %}" class="btn button-sm blue">View</a>
+                        <a href="{% url 'admissions:handle-applicant' applicant_id=applicant.pk action='admitted' %}" class="btn button-sm green">Approve</a>
+                        <a href="{% url 'admissions:handle-applicant' applicant_id=applicant.pk action='declined' %}" class="btn button-sm red">Decline</a>
+                    </span>
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+</div>
+
+{% endblock main %}

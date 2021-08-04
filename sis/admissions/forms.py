@@ -1,5 +1,12 @@
 from django import forms
 from schools.models import Programme
+from .models import Profile
+
+
+class ProfileForm(forms.ModelForm):
+    class Meta:
+        model=Profile
+        fields="__all__"
 
 class ApplicationForm(forms.Form):
 
@@ -15,9 +22,9 @@ class ApplicationForm(forms.Form):
     ]
     first_name = forms.CharField(max_length=200, widget=forms.TextInput(attrs={"class":"form-control"}))
     last_name = forms.CharField(max_length=200, widget=forms.TextInput(attrs={"class":"form-control"}))
-    other_names = forms.CharField(max_length=200, widget=forms.TextInput(attrs={"class":"form-control"}))
+    other_names = forms.CharField(required=False, max_length=200, widget=forms.TextInput(attrs={"class":"form-control"}))
     date_of_birth = forms.DateField(required=False, widget=forms.DateInput(attrs={"class":"form-control"}))
-    place_of_birth = forms.CharField(max_length=200, widget=forms.TextInput(attrs={"class": "form-control"}))
+    place_of_birth = forms.CharField(required=False, max_length=200, widget=forms.TextInput(attrs={"class": "form-control"}))
     nationality = forms.CharField(max_length=200, initial="zambia", widget=forms.TextInput(attrs={"class":"form-control"}))
     gender = forms.ChoiceField(choices=GENDER_CHOICES, initial="male")
     national_id_or_passport = forms.CharField(max_length=200, widget=forms.TextInput(attrs={"class":"form-control"}))
@@ -29,7 +36,7 @@ class ApplicationForm(forms.Form):
     phone = forms.CharField(max_length=200, widget=forms.TextInput(attrs={"class":"form-control"}))
     email = forms.EmailField(widget=forms.TextInput(attrs={"class":"form-control"}))
     physical_address = forms.CharField(max_length=200, widget=forms.TextInput(attrs={"class":"form-control"}))
-    postal_address = forms.CharField(max_length=200, widget=forms.TextInput(attrs={"class":"form-control"}))
+    postal_address = forms.CharField(required=False, max_length=200, widget=forms.TextInput(attrs={"class":"form-control"}))
 
     #Admissions
     ADMISSION_TYPE_CHOICES = [
@@ -46,9 +53,9 @@ class ApplicationForm(forms.Form):
     ]
     
     admission_type = forms.ChoiceField(choices=ADMISSION_TYPE_CHOICES, initial="undergraduate", widget=forms.Select(attrs={"class":"form-control"}))
-    first_choice = forms.ModelChoiceField(queryset=Programme.objects.all(), widget=forms.Select(attrs={'class':'form-control'}))
-    second_choice = forms.ModelChoiceField(queryset=Programme.objects.all(), widget=forms.Select(attrs={'class':'form-control'}))
-    third_choice = forms.ModelChoiceField(queryset=Programme.objects.all(), widget=forms.Select(attrs={'class':'form-control'}))
+    first_choice = forms.ModelChoiceField(queryset=Programme.objects.values_list("name", flat=True).distinct(), to_field_name="name", widget=forms.Select(attrs={'class':'form-control'}))
+    second_choice = forms.ModelChoiceField(queryset=Programme.objects.values_list("name", flat=True).distinct(), to_field_name="name", widget=forms.Select(attrs={'class':'form-control'}))
+    third_choice = forms.ModelChoiceField(queryset=Programme.objects.values_list("name", flat=True).distinct(), to_field_name="name", widget=forms.Select(attrs={'class':'form-control'}))
     
     #Secondary
     GRADE_CHOICES = [
@@ -95,9 +102,9 @@ class ApplicationForm(forms.Form):
 
     #Next of kin
     next_of_kin_full_name = forms.CharField(max_length=200, widget=forms.TextInput(attrs={"class":"form-control"}))
-    next_of_kin_email = forms.EmailField(max_length=200, widget=forms.TextInput(attrs={"class":"form-control"}))
+    next_of_kin_email = forms.EmailField(required=False, max_length=200, widget=forms.TextInput(attrs={"class":"form-control"}))
     next_of_kin_phone = forms.CharField(max_length=200, widget=forms.TextInput(attrs={"class":"form-control"}))
     next_of_kin_province = forms.CharField(max_length=200, widget=forms.TextInput(attrs={"class":"form-control"}))
     next_of_kin_town = forms.CharField(max_length=200, widget=forms.TextInput(attrs={"class":"form-control"}))
     next_of_kin_physical_address = forms.CharField(max_length=200, widget=forms.TextInput(attrs={"class":"form-control"}))
-    next_of_kin_postal_address = forms.CharField(max_length=200, widget=forms.TextInput(attrs={"class":"form-control"}))
+    next_of_kin_postal_address = forms.CharField(required=False, max_length=200, widget=forms.TextInput(attrs={"class":"form-control"}))

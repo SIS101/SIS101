@@ -1,0 +1,192 @@
+{% extends 'dashboard/base.html' %}
+{% block title %}{{ applicant.profile.user.get_full_name }}{% endblock title %}
+{% block breadcrumb %}
+<li>Admissions</li>
+<li><a href="{% url 'admissions:applicants' %}">Applicants</a></li>
+<li>{{ applicant.profile.user.get_full_name }}</li>
+{% endblock breadcrumb %}
+{% block main %}
+
+<div class="container-sm">
+    <h3>Persal information</h3>
+    <table class="table table-striped">
+        <tr>
+            <th>Name</th>
+            <td>{{ applicant.profile.user.get_full_name }}</td>
+        </tr>
+        <tr>
+            <th>Date of birth</th>
+            <td>{{ applicant.profile.date_of_birth }}</td>
+        </tr>
+        <tr>
+            <th>Place of birth</th>
+            <td>{{ applicant.profile.place_of_birth }}</td>
+        </tr>
+    </table>
+</div>
+
+<div class="container-sm">
+    <h3>Admissions</h3>
+    <table class="table table-striped">
+        <tr>
+            <th>Type</th>
+            <td>{{ applicant.admission_type }}</td>
+        </tr>
+        <tr>
+            <th>Programme</th>
+            <td>{{ applicant.programme }}</td>
+        </tr>
+        <tr>
+            <th>Second choice</th>
+            <td>{{ applicant.second_choice }}</td>
+        </tr>
+        <tr>
+            <th>Third choice</th>
+            <td>{{ applicant.third_choice }}</td>
+        </tr>
+    </table>
+</div>
+
+<div class="container-sm">
+    <h3>Secondary</h3>
+    <h5>School: {{ applicant.secondary_school_attended }}</h5>
+    <table class="table table-striped">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Subject</th>
+            <th scope="col">Grade</th>
+        </tr>
+    </thead>
+        <tbody>
+            <tr>
+                <th scope="row">1</th>
+                <td>English language</td>
+                <td>{{ applicant.english_language }}</td>
+            </tr>
+            <tr>
+                <th scope="row">2</th>
+                <td>Mathematics</td>
+                <td>{{ applicant.mathematics }}</td>
+            </tr>
+            <tr>
+                <th scope="row">3</th>
+                <td>Biology</td>
+                <td>{{ applicant.biology }}</td>
+            </tr>
+            <tr>
+                <th scope="row">4</th>
+                <td>Science</td>
+                <td>{{ applicant.science }}</td>
+            </tr>
+            <tr>
+                <th scope="row">5</th>
+                <td>Physics</td>
+                <td>{{ applicant.physics }}</td>
+            </tr>
+            <tr>
+                <th scope="row">6</th>
+                <td>Chemistry</td>
+                <td>{{ applicant.chemistry }}</td>
+            </tr>
+            <tr>
+                <th scope="row">7</th>
+                <td>Agricultural science</td>
+                <td>{{ applicant.agricultural_science }}</td>
+            </tr>
+            <tr>
+                <th scope="row">8</th>
+                <td>History</td>
+                <td>{{ applicant.history }}</td>
+            </tr>
+            <tr>
+                <th scope="row">9</th>
+                <td>Commerce</td>
+                <td>{{ applicant.commerce }}</td>
+            </tr>
+            <tr>
+                <th scope="row">10</th>
+                <td>Civic education</td>
+                <td>{{ applicant.civic_education }}</td>
+            </tr>
+            <tr>
+                <th scope="row">11</th>
+                <td>Local language</td>
+                <td>{{ applicant.local_language }}</td>
+            </tr>
+            <tr>
+                <th scope="row">12</th>
+                <td>Food nutrition and home management</td>
+                <td>{{ applicant.food_nutrition_and_home_management }}</td>
+            </tr>
+            <tr>
+                <th scope="row">13</th>
+                <td>Religious education</td>
+                <td>{{ applicant.religious_education }}</td>
+            </tr>
+            <tr>
+                <th scope="row">14</th>
+                <td>English literature</td>
+                <td>{{ applicant.english_literature }}</td>
+            </tr>
+            <tr>
+                <th scope="row">15</th>
+                <td>Principles of accounts</td>
+                <td>{{ applicant.principles_of_accounts }}</td>
+            </tr>
+            <tr>
+                <th scope="row">16</th>
+                <td>Human and social biology</td>
+                <td>{{ applicant.human_and_social_biology }}</td>
+            </tr>
+            <tr>
+                <th scope="row">17</th>
+                <td>Geometric and mechanical drawing</td>
+                <td>{{ applicant.geometric_and_mechanical_drawing }}</td>
+            </tr>
+            <tr>
+                <th scope="row">18</th>
+                <td>Metal work</td>
+                <td>{{ applicant.metal_work }}</td>
+            </tr>
+            <tr>
+                <th scope="row">19</th>
+                <td>Geography</td>
+                <td>{{ applicant.geography }}</td>
+            </tr>
+            <tr>
+                <th scope="row">20</th>
+                <td>Nutrition</td>
+                <td>{{ applicant.nutrition }}</td>
+            </tr>
+            <tr>
+                <th scope="row">21</th>
+                <td>Wood work</td>
+                <td>{{ applicant.wood_work }}</td>
+            </tr>
+            <tr>
+                <th scope="row">22</th>
+                <td>Art</td>
+                <td>{{ applicant.art }}</td>
+            </tr>
+            <tr>
+                <th scope="row">23</th>
+                <td>Information technology</td>
+                <td>{{ applicant.information_technology }}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<div class="container-sm">
+    <h3>Results transcript</h3>
+    <iframe src="/static/{{ applicant.results_transcript.name }}#toolbar=0" width="100%" height="500px"></iframe>
+</div>
+<hr>
+<div class="container-sm" style="position:sticky;bottom:0;z-index:100;">
+    <center>
+        <a href="{% url 'admissions:handle-applicant' applicant_id=applicant.pk action='admitted' %}" class="btn outline green">Admit</a>
+        <a href="{% url 'admissions:handle-applicant' applicant_id=applicant.pk action='declined' %}" class="btn outline red">Decline</a>
+    </center>
+</div>
+
+{% endblock main %}

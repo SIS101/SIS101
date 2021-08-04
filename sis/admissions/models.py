@@ -2,8 +2,8 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.db.models.signals import post_save
 from django.dispatch import receiver
-from django.utils import timezone
 from schools.models import School
+
 class Profile(models.Model):
     MARITAL_STATUS_CHOICES = [
         ('single', 'Single'),
@@ -20,7 +20,7 @@ class Profile(models.Model):
     ]
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     profile_type = models.CharField(max_length=200, choices=PROFILE_TYPE_CHOICES, default="student")
-    other_names = models.CharField(max_length=200)
+    other_names = models.CharField(max_length=200, null=True)
     marital_status = models.CharField(max_length=200, choices=MARITAL_STATUS_CHOICES, default="single")
     gender = models.CharField(max_length=200, choices=GENDER_CHOICES, default="male")
     date_of_birth = models.DateField(blank=True, null=True)
@@ -30,16 +30,16 @@ class Profile(models.Model):
     province = models.CharField(max_length=200)
     town = models.CharField(max_length=200)
     physical_address = models.CharField(max_length=200)
-    postal_address = models.CharField(max_length=200)
+    postal_address = models.CharField(null=True, max_length=200)
     phone = models.CharField(max_length=200)
 
     next_of_kin_full_name = models.CharField(max_length=200)
-    next_of_kin_email = models.EmailField(max_length=200)
+    next_of_kin_email = models.EmailField(max_length=200, null=True)
     next_of_kin_phone = models.CharField(max_length=200)
     next_of_kin_province = models.CharField(max_length=200)
     next_of_kin_town = models.CharField(max_length=200)
     next_of_kin_physical_address = models.CharField(max_length=200)
-    next_of_kin_postal_address = models.CharField(max_length=200)
+    next_of_kin_postal_address = models.CharField(max_length=200, null=True)
 
     def __str__(self):
         return self.user.username

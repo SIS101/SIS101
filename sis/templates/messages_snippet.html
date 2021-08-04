@@ -1,11 +1,19 @@
-{% if messages %}
-    <!--alerts-->
-    {% for message in messages %}
-        <div class="popup-alert alert {% if message.tags %} {{ message.tags }} {% endif %} alert-dismissible fade show shadow border border-white" role="alert">
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                <span aria-hidden="true"><b>&times;</b></span>
-            </button>
-            {{ message }}
-        </div>
-    {% endfor %}
-{% endif %}
+<div class="popup-alert">
+    {% if messages %}
+        <!--alerts-->
+        {% for message in messages %}
+            <div class="alert {% if message.tags %} {{ message.tags }} {% endif %} alert-dismissible fade show shadow border border-white" role="alert">
+                <div class="row">
+                    <div class="col-10">
+                        <p>{{ message }}</p>
+                    </div>
+                    <div class="col-2">
+                        <button type="button" class="btn" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true"><b>&times;</b></span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    {% endif %}
+</div>

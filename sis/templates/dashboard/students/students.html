@@ -1,0 +1,31 @@
+{% extends 'dashboard/base.html' %}
+{% block title %}Students{% endblock title %}
+{% block breadcrumb %}
+<li>Students</li>
+{% endblock breadcrumb %}
+{% block main %}
+
+<div class="widget-box">
+    <div class="wc-title">
+        <h4>Students</h4>
+    </div>
+    <div class="widget-inner">
+        <div class="orders-list">
+            <ul>
+                {% for student in students %}
+                <li>
+                    <span class="orders-title">
+                        <a href="" class="orders-title-name">{{ student.profile.user.get_full_name }}</a>
+                        <span class="orders-info">{{ student.admission_type }} | {{ student.programme }}</span>
+                    </span>
+                    <span class="orders-btn">
+                        <a href="#" class="btn button-sm blue">View</a>
+                    </span>
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+</div>
+
+{% endblock main %}

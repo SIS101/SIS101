@@ -130,6 +130,19 @@
 		                </a>
 		            </li>
 					<li>
+						<a href="{% url 'admissions:index' %}" class="ttr-material-button">
+							<span class="ttr-icon"><i class="ti-bookmark-alt"></i></span>
+		                	<span class="ttr-label">Admissions</span>
+		                	<span class="ttr-arrow-icon"><i class="fa fa-angle-down"></i></span>
+		                </a>
+		                <ul>
+		                	<li>
+		                		<a href="{% url 'admissions:applicants' %}" class="ttr-material-button"><span class="ttr-label">Applicants</span></a>
+		                	</li>
+		                </ul>
+		            </li>
+					<!--
+					<li>
 						<a href="#" class="ttr-material-button">
 							<span class="ttr-icon"><i class="ti-email"></i></span>
 		                	<span class="ttr-label">Mailbox</span>
@@ -163,12 +176,6 @@
 		                </ul>
 		            </li>
 					<li>
-						<a href="bookmark.html" class="ttr-material-button">
-							<span class="ttr-icon"><i class="ti-bookmark-alt"></i></span>
-		                	<span class="ttr-label">Bookmarks</span>
-		                </a>
-		            </li>
-					<li>
 						<a href="review.html" class="ttr-material-button">
 							<span class="ttr-icon"><i class="ti-comments"></i></span>
 		                	<span class="ttr-label">Review</span>
@@ -179,16 +186,19 @@
 							<span class="ttr-icon"><i class="ti-layout-accordion-list"></i></span>
 		                	<span class="ttr-label">Add listing</span>
 		                </a>
-		            </li>
+		            </li>-->
 					<li>
 						<a href="#" class="ttr-material-button">
 							<span class="ttr-icon"><i class="ti-user"></i></span>
-		                	<span class="ttr-label">My Profile</span>
+		                	<span class="ttr-label">User</span>
 		                	<span class="ttr-arrow-icon"><i class="fa fa-angle-down"></i></span>
 		                </a>
 		                <ul>
 		                	<li>
-		                		<a href="user-profile.html" class="ttr-material-button"><span class="ttr-label">User Profile</span></a>
+		                		<a href="#" class="ttr-material-button"><span class="ttr-label">My Profile</span></a>
+		                	</li>
+		                	<li>
+		                		<a href="{% url 'students:students' %}" class="ttr-material-button"><span class="ttr-label">Students</span></a>
 		                	</li>
 		                </ul>
 		            </li>

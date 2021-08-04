@@ -1,3 +1,9 @@
+.popup-alert {
+	position: fixed;
+	margin: auto;
+	bottom: 0;
+	z-index: 100;
+}
 form li {
 	color: red !important;
 }
