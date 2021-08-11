@@ -20,9 +20,20 @@ def index(request):
     return render(request, template, context)
 
 @login_required
+def my_application(request):
+    template="dashboard/admissions/my-application.html"
+    context={}
+    l_user = request.user
+    context["l_user"] = request.user
+
+    return render(request, template, context)
+
+@login_required
 def applicants(request):
     template="dashboard/admissions/applicants.html"
     context={}
+    l_user = request.user
+    context["l_user"] = request.user
 
     applicants_list = Student.objects.filter(school_status="pending")
     context["applicants"]=applicants_list
@@ -33,6 +44,8 @@ def applicants(request):
 def view_applicant(request, applicant_id):
     template="dashboard/admissions/view-applicant.html"
     context={}
+    l_user = request.user
+    context["l_user"] = request.user
 
     applicant = Student.objects.get(pk=applicant_id)
     context["applicant"]=applicant

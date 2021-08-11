@@ -50,9 +50,10 @@ INSTALLED_APPS = [
     'schools',
     'admissions',
     'students',
-    'portal'
+    'portal',
+    'payments'
 ]
-
+X_FRAME_OPTIONS = 'SAMEORIGIN'
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -76,6 +77,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'django.template.context_processors.media'
             ],
         },
     },
@@ -145,7 +147,8 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, "staticfiles")
+    os.path.join(BASE_DIR, "staticfiles"),
+    os.path.join(BASE_DIR, "student_uploads")
 ]
 STATIC_ROOT = os.path.join(BASE_DIR, "static")
 
@@ -155,3 +158,6 @@ STATIC_ROOT = os.path.join(BASE_DIR, "static")
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 LOGIN_URL="/portal/login"
+
+MEDIA_URL="/media/"
+MEDIA_ROOT=os.path.join(BASE_DIR, "media")

@@ -177,9 +177,18 @@
         </tbody>
     </table>
 </div>
-<div class="container-sm">
-    <h3>Results transcript</h3>
-    <iframe src="/static/{{ applicant.results_transcript.name }}#toolbar=0" width="100%" height="500px"></iframe>
+<div class="container">
+  <div class="row">
+    <div class="col-sm">
+      <embed class="embed-responsive" width="100%" height="100%" src="/media/{{ applicant.results_transcript }}"></embed>
+    </div>
+    <div class="col-sm">
+      <embed class="embed-responsive" width="100%" height="100%" src="/media/{{ applicant.nrc }}"></embed>
+    </div>
+    <div class="col-sm">
+      <embed class="embed-responsive" width="100%" src="/media/{{ applicant.passport_photo }}"></embed>
+    </div>
+  </div>
 </div>
 <hr>
 <div class="container-sm" style="position:sticky;bottom:0;z-index:100;">

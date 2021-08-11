@@ -9,4 +9,5 @@ urlpatterns = [
     path('applicants/', views.applicants, name="applicants"),
     path('applicant/<applicant_id>/', views.view_applicant, name="view-applicant"),
     path('applicant/<int:applicant_id>/<str:action>', views.handle_applicant, name="handle-applicant"),
+    path('my-application/', views.my_application, name="my-application")
 ]

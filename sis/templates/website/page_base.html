@@ -34,6 +34,8 @@
 	<script src="assets/js/respond.min.js"></script>
 	<![endif]-->
 	
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	
 	<!-- All PLUGINS CSS ============================================= -->
 	<link rel="stylesheet" type="text/css" href="{% static 'website/assets/css/assets.css' %}">
 	
@@ -133,7 +135,7 @@
         <div class="page-banner ovbl-dark" style="background-image:url(/static/website/assets/images/extra/nurses.jpg);">
             <div class="container">
                 <div class="page-banner-entry">
-                    <h1 class="text-white">{% block heading %}{% endblock heading %}</h1>
+                    <h1 class="text-white">{% block heading %}Page under construction{% endblock heading %}</h1>
 				 </div>
             </div>
         </div>
@@ -151,7 +153,7 @@
         <div class="page-banner contact-page section-sp2">
             <div class="container">
 			{% include "messages_snippet.html" %}
-		    {% block main %}{% endblock main %}
+		    {% block main %}<img class="w-100" src="{% static 'website/assets/images/coming-soon.gif' %}">{% endblock main %}
 
             </div>
 		</div>

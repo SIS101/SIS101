@@ -11,11 +11,20 @@ from . import models, forms
 def index(request):
     template="dashboard/schools/index.html"
     context={}
+    l_user=get_object_or_404(User, pk=request.user.id)
+    context["l_user"]=l_user
+    
+    if l_user.has_perm("schools.view_school"):
+            
+        schools = models.School.objects.all()
+        context["schools"]=schools
 
-    schools = models.School.objects.all()
-    context["schools"]=schools
+        return render(request, template, context)
+    else:
+    
+        messages.warning(request, "Access denied.")
+        return HttpResponseRedirect(reverse("portal:dashboard"))
 
-    return render(request, template, context)
 
 @login_required
 def add_school(request):

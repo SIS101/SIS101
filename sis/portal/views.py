@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import redirect, render
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
@@ -9,6 +9,8 @@ from django.urls import reverse
 def dashboard(request):
     template="dashboard/base.html"
     context={}
+    l_user=request.user
+    context["l_user"]=l_user
 
     return render(request, template, context)
 
@@ -40,3 +42,9 @@ def logout_user(request):
     logout(request)
     messages.warning(request, 'You have logged out!')
     return HttpResponseRedirect(reverse('portal:login'))
+
+def coming_soon(request):
+    template="dashboard/coming-soon.html"
+    context={}
+
+    return render(request, template, context)

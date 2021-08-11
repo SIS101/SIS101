@@ -33,7 +33,7 @@
 	<script src="assets/js/html5shiv.min.js"></script>
 	<script src="assets/js/respond.min.js"></script>
 	<![endif]-->
-	
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 	<!-- All PLUGINS CSS ============================================= -->
 	<link rel="stylesheet" type="text/css" href="{% static 'dashboard/assets/css/assets.css' %}">
 	<link rel="stylesheet" type="text/css" href="{% static 'dashboard/assets/vendors/calendar/fullcalendar.css' %}">
@@ -123,24 +123,41 @@
 		                	<span class="ttr-label">Dashborad</span>
 		                </a>
 		            </li>
-					<li>
-						<a href="{% url 'schools:index' %}" class="ttr-material-button">
-							<span class="ttr-icon"><i class="ti-book"></i></span>
-		                	<span class="ttr-label">Schools</span>
-		                </a>
-		            </li>
-					<li>
-						<a href="{% url 'admissions:index' %}" class="ttr-material-button">
-							<span class="ttr-icon"><i class="ti-bookmark-alt"></i></span>
-		                	<span class="ttr-label">Admissions</span>
-		                	<span class="ttr-arrow-icon"><i class="fa fa-angle-down"></i></span>
-		                </a>
-		                <ul>
-		                	<li>
-		                		<a href="{% url 'admissions:applicants' %}" class="ttr-material-button"><span class="ttr-label">Applicants</span></a>
-		                	</li>
-		                </ul>
-		            </li>
+
+					<!--Staff links-->
+					{% if l_user.is_staff %}
+						<li>
+							<a href="{% url 'schools:index' %}" class="ttr-material-button">
+								<span class="ttr-icon"><i class="ti-book"></i></span>
+								<span class="ttr-label">Schools</span>
+							</a>
+						</li>
+						<li>
+							<a href="{% url 'admissions:index' %}" class="ttr-material-button">
+								<span class="ttr-icon"><i class="ti-bookmark-alt"></i></span>
+								<span class="ttr-label">Admissions</span>
+								<span class="ttr-arrow-icon"><i class="fa fa-angle-down"></i></span>
+							</a>
+							<ul>
+								<li>
+									<a href="{% url 'admissions:applicants' %}" class="ttr-material-button"><span class="ttr-label">Applicants</span></a>
+								</li>
+							</ul>
+						</li>
+					{% else %}
+						<li>
+							<a href="{% url 'admissions:my-application' %}" class="ttr-material-button">
+								<span class="ttr-icon"><i class="ti-layout-accordion-list"></i></span>
+								<span class="ttr-label">My Application</span>
+							</a>
+						</li>
+						<li>
+							<a href="{% url 'payments:payments' %}" class="ttr-material-button">
+								<span class="ttr-icon"><i class="material-icons">payments</i></span>
+								<span class="ttr-label">Payments</span>
+							</a>
+						</li>
+					{% endif %}
 					<!--
 					<li>
 						<a href="#" class="ttr-material-button">
@@ -197,9 +214,13 @@
 		                	<li>
 		                		<a href="#" class="ttr-material-button"><span class="ttr-label">My Profile</span></a>
 		                	</li>
-		                	<li>
-		                		<a href="{% url 'students:students' %}" class="ttr-material-button"><span class="ttr-label">Students</span></a>
-		                	</li>
+
+							<!--Staff links-->
+							{% if l_user.is_staff %}
+								<li>
+									<a href="{% url 'students:students' %}" class="ttr-material-button"><span class="ttr-label">Students</span></a>
+								</li>
+							{% endif %}
 		                </ul>
 		            </li>
 		            <li class="ttr-seperate"></li>

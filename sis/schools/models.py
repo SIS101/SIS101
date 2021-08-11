@@ -22,6 +22,7 @@ class Programme(models.Model):
     field_work = models.BooleanField(default=False)
     practicals = models.BooleanField(default=True)
     school = models.ForeignKey(School, on_delete=models.CASCADE)
+    image = models.ImageField(upload_to="programme_uploads", default="website/assets/images/logo.png")
 
     def __str__(self):
         return self.name

@@ -23,7 +23,7 @@ class ApplicationForm(forms.Form):
     first_name = forms.CharField(max_length=200, widget=forms.TextInput(attrs={"class":"form-control"}))
     last_name = forms.CharField(max_length=200, widget=forms.TextInput(attrs={"class":"form-control"}))
     other_names = forms.CharField(required=False, max_length=200, widget=forms.TextInput(attrs={"class":"form-control"}))
-    date_of_birth = forms.DateField(required=False, widget=forms.DateInput(attrs={"class":"form-control"}))
+    date_of_birth = forms.DateField(required=False, widget=forms.DateInput(attrs={"class":"form-control", "type": "date"}))
     place_of_birth = forms.CharField(required=False, max_length=200, widget=forms.TextInput(attrs={"class": "form-control"}))
     nationality = forms.CharField(max_length=200, initial="zambia", widget=forms.TextInput(attrs={"class":"form-control"}))
     gender = forms.ChoiceField(choices=GENDER_CHOICES, initial="male")

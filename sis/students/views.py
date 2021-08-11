@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from . import models
 
@@ -7,6 +7,8 @@ from . import models
 def students(request):
     template="dashboard/students/students.html"
     context={}
+    l_user = request.user
+    context["l_user"]=l_user
 
     students = models.Student.objects.filter(school_status="admitted")
     context["students"] = students

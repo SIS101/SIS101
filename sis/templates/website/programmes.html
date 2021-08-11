@@ -1,0 +1,55 @@
+{% extends 'website/page_base.html' %}
+{% block title %}Our programmes{% endblock title %}
+{% block heading %}Our Programmes{% endblock heading %}
+{% block breadcrumb %}
+<li><a href="{% url 'website:home' %}">Home</a></li>
+<li>Our programmes</li>
+{% endblock breadcrumb %}
+{% block main %}
+{% load static %}
+
+        <div class="content-block">
+			<!-- Blog Grid ==== -->
+			<div class="section-area section-sp1">
+				<div class="container">
+					<div class="ttr-blog-grid-3 row" id="masonry">
+                        {% for programme in programmes.object_list %}
+                            <div class="post action-card col-lg-4 col-md-6 col-sm-12 col-xs-12 m-b40">
+                                <div class="recent-news">
+                                    <div class="action-box">
+                                        <img src="{% static programme.image %}" alt="">
+                                    </div>
+                                    <div class="info-bx">
+                                        <ul class="media-post">
+                                            <li><a href="#">{{ programme.school.name }}</a></li>
+                                        </ul>
+                                        <h5 class="post-title"><a href="blog-details.html">{{ programme.name }}</a></h5>
+                                        <div class="post-extra">
+                                            <a href="#" class="btn-link">VIEW</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %}
+					</div>
+					<!-- Pagination ==== -->
+                    {% if programmes.has_other_pages %}
+					<div class="pagination-bx rounded-sm gray clearfix">
+						<ul class="pagination">
+                            {% if programmes.has_next %}
+							<li class="previous"><a href="page={{ programmes.previous_page_number }}"><i class="ti-arrow-left"></i> Prev</a></li>
+                            {% endif %}
+							<li class="active"><a href="page={{ programmes.number }}">{{ programmes.number }}</a></li>
+                            {% if programmes.has_next %}
+							<li class="next"><a href="page={{ programmes.next_page_number }}">Next <i class="ti-arrow-right"></i></a></li>
+                            {% endif %}
+						</ul>
+					</div>
+                    {% endif %}
+					<!-- Pagination END ==== -->
+				</div>
+			</div>
+			<!-- Blog Grid END ==== -->
+        </div>
+
+{% endblock main %}

@@ -72,9 +72,9 @@ class Student(models.Model):
     information_technology = models.IntegerField(choices=GRADE_CHOICES, default=0)
 
     #Uploads
-    results_transcript = models.FileField(upload_to="staticfiles/student_uploads", null=True)
-    nrc = models.FileField(upload_to="staticfiles/student_uploads", null=True)
-    passport_photo = models.FileField(upload_to="staticfiles/student_uploads", null=True)
+    results_transcript = models.FileField(upload_to="student_uploads", null=True)
+    nrc = models.FileField(upload_to="student_uploads", null=True)
+    passport_photo = models.FileField(upload_to="student_uploads", null=True)
 
     school_status = models.CharField(max_length=200, choices=SCHOOL_STATUS_CHOICES, default="pending")
 
