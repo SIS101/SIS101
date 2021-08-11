@@ -10,6 +10,7 @@ from . import forms, models
 from schools.models import Programme
 from django.utils import timezone
 from students.models import Student
+from payments.models import Invoice, InvoiceItem
 
 # Create your views here.
 @login_required
@@ -122,6 +123,12 @@ def application(request):
                         student_form.save()
                         messages.success(request, "Student successfully created.")
                         messages.success(request, "Login username: {}, password: 123456".format(data["email"]))
+                        try:
+                            invoice = Invoice.objects.create(to=saved_user, due_date=timezone.datetime.today().date())
+                            InvoiceItem.objects.create(invoice=invoice, description="Application fee", amount=150)
+                        except Exception as e:
+                            messages.error(request, "Failed to send application invoice: "+str(e))
+                            
                         return redirect("/admissions/application/success")
                     else:
                         messages.warning(request, student_form.errors)

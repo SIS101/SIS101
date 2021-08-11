@@ -5,10 +5,15 @@ from django.dispatch import receiver
 
 # Create your models here.
 class Invoice(models.Model):
+    STATUS_CHOICES=[
+        ('pending', 'PENDING'),
+        ('cleared', 'CLEARED')
+    ]
     to = models.ForeignKey(User, on_delete=models.CASCADE)
     date = models.DateField(auto_now=True)
     due_date = models.DateField()
     notes = models.TextField(blank=True, default="")
+    status = models.CharField(max_length=200, choices=STATUS_CHOICES)
 
     def __str__(self):
         return self.to.username+"->"+str(self.get_total())
