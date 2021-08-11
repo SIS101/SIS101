@@ -1,6 +1,6 @@
 {% extends 'dashboard/base.html' %}
 {% block title %}Payments Due{% endblock title %}
 {% block breadcrumb %}
-<li>payments</li>
+<li><a href="{% url 'payments:payments' %}">payments</a></li>
 <li>due</li>
 {% endblock breadcrumb %}
