@@ -33,8 +33,23 @@ class InvoiceItem(models.Model):
 
     def __str__(self):
         return self.description
-"""
-class Deposit(models.Model):
+        
+class StudentDeposit(models.Model):
+    STATUS_CHOICE=[
+        ('pending', 'PENDING'),
+        ('accepted', 'ACCEPTED'),
+        ('declined', 'DECLINED')
+    ]
     student=models.ForeignKey(Student, on_delete=models.CASCADE)
+    transaction_id=models.CharField(max_length=200)
+    description=models.CharField(max_length=200)
+    amount=models.FloatField()
+    deposit_date=models.DateField()
+    status=models.CharField(max_length=200, choices=STATUS_CHOICE)
 
-"""
+    def __str__(self):
+        return self.student.profile.user.username+"-"+self.transaction_id+"-"+str(self.amount)
+
+class StudentBalance(models.Model):
+    student=models.ForeignKey(Student, on_delete=models.CASCADE)
+    balance=models.FloatField()
