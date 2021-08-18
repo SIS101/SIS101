@@ -3,7 +3,7 @@
         <div class="heading-bx left">
             <h2 class="title-head">{{ form_title }}</h2>
         </div>	
-        <form action="{{ form_action }}" method="{{ form_method }}">
+        <form action="{{ form_action }}" method="{{ form_method }}" enctype="multipart/form-data">
         {% csrf_token %}
             <div class="row">
                 {% for field in form %}

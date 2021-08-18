@@ -346,8 +346,8 @@
 									<div class="feature-box-sm radius bg-white">
 										<i class="fa fa-bank text-primary"></i>
 									</div>
-									<h4><a href="#">Available Programmes</a></h4>
-									<a href="#" class="btn radius-xl">View More</a>
+									<h4><a href="{% url 'website:our-programmes' %}">Available Programmes</a></h4>
+									<a href="{% url 'website:our-programmes' %}" class="btn radius-xl">View More</a>
 								</div>
 							</div>
 						</div>
@@ -360,8 +360,8 @@
 									<div class="feature-box-sm radius bg-white">
 										<i class="fa fa-book text-primary"></i>
 									</div>
-									<h4><a href="#">Short Courses</a></h4>
-									<a href="#" class="btn radius-xl">View More</a>
+									<h4><a href="{% url 'portal:coming-soon' %}">Short Courses</a></h4>
+									<a href="{% url 'portal:coming-soon' %}" class="btn radius-xl">View More</a>
 								</div>
 							</div>
 						</div>
@@ -374,8 +374,8 @@
 									<div class="feature-box-sm radius bg-white">
 										<i class="fa fa-file-text-o text-primary"></i>
 									</div>
-									<h4><a href="#">Book Library & Store</a></h4>
-									<a href="#" class="btn radius-xl">View More</a>
+									<h4><a href="{% url 'portal:coming-soon' %}">Book Library & Store</a></h4>
+									<a href="{% url 'portal:coming-soon' %}" class="btn radius-xl">View More</a>
 								</div>
 							</div>
 						</div>
@@ -394,118 +394,25 @@
 					</div>
 					<div class="row">
 					<div class="courses-carousel owl-carousel owl-btn-1 col-12 p-lr0">
-						<div class="item">
-							<div class="cours-bx">
-								<div class="action-box">
-									<img src="" alt="">
-									<a href="#" class="btn">Read More</a>
-								</div>
-								<div class="info-bx text-center">
-									<h5><a href="#">Introduction EduChamp – LMS plugin</a></h5>
-									<span>Programming</span>
-								</div>
-								<div class="cours-more-info">
-									<div class="review">
-										<span>3 Review</span>
-										<ul class="cours-star">
-											<li class="active"><i class="fa fa-star"></i></li>
-											<li class="active"><i class="fa fa-star"></i></li>
-											<li class="active"><i class="fa fa-star"></i></li>
-											<li><i class="fa fa-star"></i></li>
-											<li><i class="fa fa-star"></i></li>
-										</ul>
+						{% for programme in programmes %}
+							<div class="item">
+								<div class="cours-bx">
+									<div class="action-box">
+										<img src="" alt="">
+										<a href="#" class="btn">Read More</a>
 									</div>
-									<div class="price">
-										<del>$190</del>
-										<h5>$120</h5>
+									<div class="info-bx text-center">
+										<h5><a href="{{ programme.get_absolute_url }}">{{ programme.name }}</a></h5>
+										<span>{{ programme.school.name }}</span>
+									</div>
+									<div class="cours-more-info">
+										<div class="price">
+											<h5>K{{ programme.programmefee.amount }}</h5>
+										</div>
 									</div>
 								</div>
 							</div>
-						</div>
-						<div class="item">
-							<div class="cours-bx">
-								<div class="action-box">
-									<img src="assets/images/courses/pic2.jpg" alt="">
-									<a href="#" class="btn">Read More</a>
-								</div>
-								<div class="info-bx text-center">
-									<h5><a href="#">Introduction EduChamp – LMS plugin</a></h5>
-									<span>Programming</span>
-								</div>
-								<div class="cours-more-info">
-									<div class="review">
-										<span>3 Review</span>
-										<ul class="cours-star">
-											<li class="active"><i class="fa fa-star"></i></li>
-											<li class="active"><i class="fa fa-star"></i></li>
-											<li class="active"><i class="fa fa-star"></i></li>
-											<li><i class="fa fa-star"></i></li>
-											<li><i class="fa fa-star"></i></li>
-										</ul>
-									</div>
-									<div class="price">
-										<del>$190</del>
-										<h5>$120</h5>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="item">
-							<div class="cours-bx">
-								<div class="action-box">
-									<img src="assets/images/courses/pic3.jpg" alt="">
-									<a href="#" class="btn">Read More</a>
-								</div>
-								<div class="info-bx text-center">
-									<h5><a href="#">Introduction EduChamp – LMS plugin</a></h5>
-									<span>Programming</span>
-								</div>
-								<div class="cours-more-info">
-									<div class="review">
-										<span>3 Review</span>
-										<ul class="cours-star">
-											<li class="active"><i class="fa fa-star"></i></li>
-											<li class="active"><i class="fa fa-star"></i></li>
-											<li class="active"><i class="fa fa-star"></i></li>
-											<li><i class="fa fa-star"></i></li>
-											<li><i class="fa fa-star"></i></li>
-										</ul>
-									</div>
-									<div class="price">
-										<del>$190</del>
-										<h5>$120</h5>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="item">
-							<div class="cours-bx">
-								<div class="action-box">
-									<img src="assets/images/courses/pic4.jpg" alt="">
-									<a href="#" class="btn">Read More</a>
-								</div>
-								<div class="info-bx text-center">
-									<h5><a href="#">Introduction EduChamp – LMS plugin</a></h5>
-									<span>Programming</span>
-								</div>
-								<div class="cours-more-info">
-									<div class="review">
-										<span>3 Review</span>
-										<ul class="cours-star">
-											<li class="active"><i class="fa fa-star"></i></li>
-											<li class="active"><i class="fa fa-star"></i></li>
-											<li class="active"><i class="fa fa-star"></i></li>
-											<li><i class="fa fa-star"></i></li>
-											<li><i class="fa fa-star"></i></li>
-										</ul>
-									</div>
-									<div class="price">
-										<del>$190</del>
-										<h5>$120</h5>
-									</div>
-								</div>
-							</div>
-						</div>
+						{% endfor %}
 					</div>
 					</div>
 				</div>
@@ -526,7 +433,7 @@
 							<hr>
 						</div>
 					</div>
-					<div class="mw800 m-auto">
+					<!--<div class="mw800 m-auto">
 						<div class="row">
 							<div class="col-md-4 col-sm-6">
 								<div class="cours-search-bx m-b30">
@@ -553,7 +460,7 @@
 								</div>
 							</div>
 						</div>
-					</div>
+					</div>-->
 				</div>
 			</div>
 			<!-- Form END -->

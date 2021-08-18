@@ -3,8 +3,21 @@ from django.contrib.auth.models import User
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 from students.models import Student
+from schools.models import Programme
 
 # Create your models here.
+class ProgrammeFee(models.Model):
+    programme=models.OneToOneField(Programme, on_delete=models.CASCADE)
+    amount=models.FloatField(default=0.0)
+
+    def __str__(self):
+        return str(self.amount)
+
+    @receiver(post_save, sender=Programme)
+    def on_create_user(instance, created, **kwargs):
+        if created:
+            ProgrammeFee.objects.create(user=instance)
+
 class Invoice(models.Model):
     STATUS_CHOICES=[
         ('pending', 'PENDING'),

@@ -1,0 +1,9 @@
+{% extends 'dashboard/blank-base.html' %}
+{% block title %}Initial Setup{% endblock title %}
+
+{% block main %}
+
+<div style="max-width: 300px;">
+    {% include 'form_snippet.html' with form_title="Initialization" form_action="" form_method="post" button="Save" %}
+</div>
+{% endblock main %}

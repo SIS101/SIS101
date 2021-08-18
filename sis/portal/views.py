@@ -4,6 +4,8 @@ from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.http import HttpResponseRedirect
 from django.urls import reverse
+from website.models import WebsiteSetting
+from website.forms import WebsiteSettingForm
 
 @login_required
 def dashboard(request):
@@ -48,3 +50,29 @@ def coming_soon(request):
     context={}
 
     return render(request, template, context)
+
+@login_required
+def initial_setup(request):
+    template="dashboard/initial-setup.html"
+    context={}
+
+    l_user=request.user
+    context["l_user"]=l_user
+    
+    if l_user.has_perm("website.view_websiteSetting"):
+        
+        context["form"]=WebsiteSettingForm()
+
+        if request.method == "POST":
+            form = WebsiteSettingForm(request.POST, request.FILES)
+            if form.is_valid():
+                form.save()
+                return HttpResponseRedirect(reverse("website:home"))
+            else:
+                context["form"]=form
+
+        return render(request, template, context)
+    else:
+    
+        messages.warning(request, "Access denied.")
+        return HttpResponseRedirect(reverse("portal:dashboard"))
