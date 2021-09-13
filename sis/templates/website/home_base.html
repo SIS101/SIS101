@@ -11,13 +11,13 @@
 	<meta name="robots" content="" />
 	{% load static %}
 	<!-- DESCRIPTION -->
-	<meta name="description" content="EduChamp : Education HTML Template" />
+	<meta name="description" content="{{ site.description }}" />
 	
 	<!-- OG -->
-	<meta property="og:title" content="EduChamp : Education HTML Template" />
-	<meta property="og:description" content="EduChamp : Education HTML Template" />
+	<meta property="og:title" content="{{ site.full_name }}" />
+	<meta property="og:description" content="{{ site.description }}" />
 	<meta property="og:image" content="" />
-	<meta name="format-detection" content="telephone=no">
+	<meta name="format-detection" content="telephone={{ site.contact_number_1 }}">
 	
 	<!-- FAVICONS ICON ============================================= -->
 	<link rel="icon" href="{% static 'website/assets/images/favicon.ico' %}" type="image/x-icon" />

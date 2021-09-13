@@ -15,13 +15,14 @@ class WebsiteSetting(models.Model):
     description=models.CharField(max_length=200, blank=True)
 
     #site images
-    logo=models.ImageField(upload_to="website", default="website/assets/images/logo.png")
-    first_slide_image=models.ImageField(upload_to="website/slide", default="website/assets/images/slider/slide1.jpg")
-    second_slide_image=models.ImageField(upload_to="website/slide", default="website/assets/images/slider/slide2.jpg")
-    prgrammes_image=models.ImageField(upload_to="programmes", default="website/assets/images/extra/programmes.png")
-    short_courses_image=models.ImageField(upload_to="short_courses", default="website/assets/images/extra/short-courses.png")
-    library_image=models.ImageField(upload_to="library", default="website/assets/images/extra/books.png")
-    background_image=models.ImageField(upload_to="website/background", default="website/assets/images/extra/nurses.jpg")
+    favicon=models.ImageField(upload_to="website", default="defaults/favicon.ico")
+    logo=models.ImageField(upload_to="website", default="defaults/logo.png")
+    first_slide_image=models.ImageField(upload_to="website/slide", default="defaults/slide1.jpg")
+    second_slide_image=models.ImageField(upload_to="website/slide", default="defaults/slide2.jpg")
+    prgrammes_image=models.ImageField(upload_to="programmes", default="defaults/programmes.png")
+    short_courses_image=models.ImageField(upload_to="short_courses", default="defaults/short-courses.png")
+    library_image=models.ImageField(upload_to="library", default="defaults/books.png")
+    background_image=models.ImageField(upload_to="website/background", default="defaults/nurses.jpg")
 
     #social links
     facebook_link=models.URLField(default="https://www.facebook.com/kafueihser/")

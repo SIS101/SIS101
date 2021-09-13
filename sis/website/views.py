@@ -11,9 +11,11 @@ def home(request):
     template = "website/home.html"
     context = {}
     try:
-        websiteSetting = models.WebsiteSetting.objects.get(pk=1)
+        websiteSetting = models.WebsiteSetting.objects.all()[0]
     except:
         return HttpResponseRedirect(reverse("portal:initial-setup"))
+    else:
+        context["site"]=websiteSetting
 
     programmes = Programme.objects.all()
     context["programmes"]=programmes
