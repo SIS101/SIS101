@@ -99,9 +99,9 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'kweb',
-        'USER': 'root',
-        'PASSWORD': '@cnuit',
-        'HOST': '192.168.0.105',
+        'USER': 'cnu',
+        'PASSWORD': 'cnuit',
+        'HOST': 'localhost',
         'PORT': 3306,
         'OPTIONS': {
             'charset': 'utf8mb4',
