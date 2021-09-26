@@ -1,5 +1,5 @@
 from django.shortcuts import render, get_object_or_404
-from django.contrib.auth.decorators import login_required
+from django.contrib.auth.decorators import login_required, permission_required
 from django.contrib import messages
 from django.http import HttpResponseRedirect
 from django.contrib.auth.models import User
@@ -103,6 +103,7 @@ def add_programme(request, school_id):
         messages.warning(request, "Access denied.")
         return HttpResponseRedirect(reverse("schools:view-school", args=[school_id]))
 
+@permission_required('schools.view_programme', raise_exception=True)
 @login_required
 def view_programme(request, programme_id):
     l_user=get_object_or_404(User, pk=request.user.id)

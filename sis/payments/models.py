@@ -14,9 +14,9 @@ class ProgrammeFee(models.Model):
         return str(self.amount)
 
     @receiver(post_save, sender=Programme)
-    def on_create_user(instance, created, **kwargs):
+    def on_create_programme(instance, created, **kwargs):
         if created:
-            ProgrammeFee.objects.create(user=instance)
+            ProgrammeFee.objects.create(programme=instance)
 
 class Invoice(models.Model):
     STATUS_CHOICES=[

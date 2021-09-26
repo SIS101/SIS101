@@ -1,5 +1,5 @@
 from django.shortcuts import redirect, render
-from django.contrib.auth.decorators import login_required
+from django.contrib.auth.decorators import login_required, permission_required
 from django.http import HttpResponseRedirect
 from django.urls import reverse
 from django.contrib import messages
@@ -14,6 +14,7 @@ from payments.models import Invoice, InvoiceItem
 
 # Create your views here.
 @login_required
+@permission_required('students.view_student', raise_exception=True)
 def index(request):
     template="dashboard/admissions/index.html"
     context={}
@@ -21,10 +22,10 @@ def index(request):
     return render(request, template, context)
 
 @login_required
+@permission_required('students.view_student', raise_exception=True)
 def my_application(request):
     template="dashboard/admissions/my-application.html"
     context={}
-    l_user = request.user
     context["l_user"] = request.user
 
     return render(request, template, context)
