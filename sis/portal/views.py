@@ -9,7 +9,7 @@ from website.forms import WebsiteSettingForm
 
 @login_required
 def dashboard(request):
-    template="dashboard/base.html"
+    template="dashboard/portal/dashboard.html"
     context={}
     l_user=request.user
     context["l_user"]=l_user
@@ -21,13 +21,18 @@ def login_page(request):
     template="dashboard/login.html"
     context={}
 
+    try:
+        next = request.GET["next"]
+    except:
+        next = None
+
     if request.method == "POST":
         user = authenticate(request, username=request.POST["username"], password=request.POST["password"])
         if user is not None:
             login(request, user)
             messages.success(request, 'Welcome %s' % request.user.get_username())
-            if request.POST['next'] != 'None':
-                return HttpResponseRedirect(request.POST['next'])
+            if next != None:
+                return HttpResponseRedirect(next)
             else:
                 return HttpResponseRedirect(reverse('portal:dashboard'))
         else:
@@ -35,7 +40,10 @@ def login_page(request):
             return HttpResponseRedirect(reverse('portal:login'))
     
     elif request.user.is_authenticated:
-        return HttpResponseRedirect(reverse('portal:dashboard'))
+        if next != None:
+            return HttpResponseRedirect(next)
+        else:
+            return HttpResponseRedirect(reverse('portal:dashboard'))
 
     return render(request, template, context)
 

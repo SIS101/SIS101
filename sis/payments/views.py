@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
+from payments import models
 
 # Create your views here.
 @login_required
@@ -17,5 +18,8 @@ def due(request):
     context={}
     l_user=request.user
     context["l_user"]=l_user
+
+    invoices = models.Invoice.objects.filter(to=l_user.profile.student)
+    context["invoices"] = invoices
 
     return render(request, template, context)

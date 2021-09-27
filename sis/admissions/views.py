@@ -14,7 +14,6 @@ from payments.models import Invoice, InvoiceItem
 
 # Create your views here.
 @login_required
-@permission_required('students.view_student', raise_exception=True)
 def index(request):
     template="dashboard/admissions/index.html"
     context={}
@@ -22,7 +21,6 @@ def index(request):
     return render(request, template, context)
 
 @login_required
-@permission_required('students.view_student', raise_exception=True)
 def my_application(request):
     template="dashboard/admissions/my-application.html"
     context={}
@@ -121,11 +119,11 @@ def application(request):
                     data["school_status"]="pending"
                     student_form = StudentForm(data=data, files=application.files)
                     if student_form.is_valid():
-                        student_form.save()
+                        student_user = student_form.save()
                         messages.success(request, "Student successfully created.")
                         messages.success(request, "Login username: {}, password: 123456".format(data["email"]))
                         try:
-                            invoice = Invoice.objects.create(to=saved_user, due_date=timezone.datetime.today().date())
+                            invoice = Invoice.objects.create(to=student_user, due_date=timezone.datetime.today().date())
                             InvoiceItem.objects.create(invoice=invoice, description="Application fee", amount=150)
                         except Exception as e:
                             messages.error(request, "Failed to send application invoice: "+str(e))

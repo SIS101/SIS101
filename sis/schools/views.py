@@ -61,7 +61,7 @@ def view_school(request, school_id):
     if l_user.has_perm("schools.view_school"):
         
         template="dashboard/schools/view-school.html"
-        context={}
+        context={"l_user": l_user}
 
         school = models.School.objects.get(pk=school_id)
         programmes = models.Programme.objects.filter(school=school)
@@ -110,7 +110,7 @@ def view_programme(request, programme_id):
     
     if l_user.has_perm("schools.view_programme"):
         template="dashboard/schools/view-programme.html"
-        context={}
+        context={"l_user": l_user}
 
         programme = models.Programme.objects.get(pk=programme_id)
         context["programme"]=programme

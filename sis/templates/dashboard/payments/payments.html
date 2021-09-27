@@ -7,28 +7,14 @@
 {% block main %}
 <div class="container">
     <div class="row">
-        <div class="col-md-6 col-lg-3 col-xl-3 col-sm-6 col-12">
-            <div class="widget-card widget-bg1 shadow">
-                <center class="p-2">		
-                    <a href="{% url 'payments:due' %}" class="btn outline white">Payments due</a>
-                </center> 
-            </div>
-        </div>
-        <div class="col-md-6 col-lg-3 col-xl-3 col-sm-6 col-12">
-            <div class="widget-card widget-bg2">	
-                <center class="p-2">		
-                    <a href="" class="btn outline white">Upcoming Payments</a>
-                </center> 			      
-            </div>
-        </div>
-        <div class="col-md-6 col-lg-3 col-xl-3 col-sm-6 col-12">
+        <div class="col-md-6 col-lg-6 col-xl-6 col-sm-6 col-12">
             <div class="widget-card widget-bg3">
                 <center class="p-2">		
-                    <a href="" class="btn outline white">Pending Payments</a>
+                    <a href="{% url 'payments:due' %}" class="btn outline white">Pending Payments</a>
                 </center> 			      
             </div>
         </div>
-        <div class="col-md-6 col-lg-3 col-xl-3 col-sm-6 col-12">
+        <div class="col-md-6 col-lg-6 col-xl-6 col-sm-6 col-12">
             <div class="widget-card widget-bg4">	
                 <center class="p-2">		
                     <a href="" class="btn outline white">Cleared Payments</a>
@@ -44,50 +30,14 @@
             <div class="widget-inner">
                 <div class="orders-list">
                     <ul>
-                        <li>
+                        <li><!--
                             <span class="orders-title">
                                 <a href="#" class="orders-title-name">Anna Strong </a>
                                 <span class="orders-info">Order #02357 | Date 12/08/2019</span>
                             </span>
                             <span class="orders-btn">
                                 <span class="badge badge-primary">Primary</span>
-                            </span>
-                        </li>
-                        <li>
-                            <span class="orders-title">
-                                <a href="#" class="orders-title-name">Revenue</a>
-                                <span class="orders-info">Order #02357 | Date 12/08/2019</span>
-                            </span>
-                            <span class="orders-btn">
-                                <span class="badge badge-primary">Primary</span>
-                            </span>
-                        </li>
-                        <li>
-                            <span class="orders-title">
-                                <a href="#" class="orders-title-name">Anna Strong </a>
-                                <span class="orders-info">Order #02357 | Date 12/08/2019</span>
-                            </span>
-                            <span class="orders-btn">
-                                <span class="badge badge-primary">Primary</span>
-                            </span>
-                        </li>
-                        <li>
-                            <span class="orders-title">
-                                <a href="#" class="orders-title-name">Revenue</a>
-                                <span class="orders-info">Order #02357 | Date 12/08/2019</span>
-                            </span>
-                            <span class="orders-btn">
-                                <span class="badge badge-primary">Primary</span>
-                            </span>
-                        </li>
-                        <li>
-                            <span class="orders-title">
-                                <a href="#" class="orders-title-name">Anna Strong </a>
-                                <span class="orders-info">Order #02357 | Date 12/08/2019</span>
-                            </span>
-                            <span class="orders-btn">
-                                <span class="badge badge-primary">Primary</span>
-                            </span>
+                            </span>-->
                         </li>
                     </ul>
                 </div>

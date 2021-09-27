@@ -4,3 +4,30 @@
 <li><a href="{% url 'payments:payments' %}">payments</a></li>
 <li>due</li>
 {% endblock breadcrumb %}
+
+{% block main %}
+
+<div class="widget-box">
+    <div class="wc-title">
+        <h4>Payment Pending</h4>
+    </div>
+    <div class="widget-inner">
+        <div class="orders-list">
+            <ul>
+            {% for invoice in invoices %}
+                <li>
+                    <span class="orders-title">
+                        <a href="#" class="orders-title-name">{{ invoice.get_total }} </a>
+                        <span class="orders-info">Date {{ invoice.date }}</span>
+                    </span>
+                    <span class="orders-btn">
+                        <!--<span class="badge badge-primary">Primary</span>-->
+                    </span>
+                </li>            
+            {% endfor %}
+            </ul>
+        </div>
+    </div>
+</div>
+
+{% endblock main %}
