@@ -7,7 +7,6 @@ from django.urls import reverse
 from website.models import WebsiteSetting
 from website.forms import WebsiteSettingForm
 
-@login_required
 def dashboard(request):
     template="dashboard/portal/dashboard.html"
     context={}
@@ -16,7 +15,7 @@ def dashboard(request):
 
     return render(request, template, context)
 
-# Create your views here.
+#Create your views here.
 def login_page(request):
     template="dashboard/login.html"
     context={}
@@ -59,28 +58,8 @@ def coming_soon(request):
 
     return render(request, template, context)
 
-@login_required
-def initial_setup(request):
-    template="dashboard/initial-setup.html"
-    context={}
+def programmes(request):
+    template="dashboard/portal/programmes.html"
+    context={"l_user": request.user}
 
-    l_user=request.user
-    context["l_user"]=l_user
-    
-    if l_user.has_perm("website.view_websiteSetting"):
-        
-        context["form"]=WebsiteSettingForm()
-
-        if request.method == "POST":
-            form = WebsiteSettingForm(request.POST, request.FILES)
-            if form.is_valid():
-                form.save()
-                return HttpResponseRedirect(reverse("website:home"))
-            else:
-                context["form"]=form
-
-        return render(request, template, context)
-    else:
-    
-        messages.warning(request, "Access denied.")
-        return HttpResponseRedirect(reverse("portal:dashboard"))
+    return render(request, template, context)

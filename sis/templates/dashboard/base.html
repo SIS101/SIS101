@@ -75,13 +75,14 @@
 				<!-- header left menu start -->
 				<ul class="ttr-header-navigation">
 					<li>
-						<a href="/" class="ttr-material-button ttr-submenu-toggle">HOME</a>
+						<a href="/" class="ttr-material-button ttr-submenu-toggle">Kafue Institute Of Health Sciences & Research</a>
 					</li>
 				</ul>
 				<!-- header left menu end -->
 			</div>
 			<div class="ttr-header-right ttr-with-seperator">
 				<!-- header right menu start -->
+				{% if l_user.username %}
 				<ul class="ttr-header-navigation">
 					<li>
 						<a href="#" class="ttr-material-button ttr-submenu-toggle"><span class="ttr-user-avatar"><img alt="" src="{% static 'dashboard/assets/images/extra/user.png' %}" width="32" height="32"></span></a>
@@ -93,6 +94,7 @@
 						</div>
 					</li>
 				</ul>
+				{% endif %}
 				<!-- header right menu end -->
 			</div>
 		</div>
@@ -119,44 +121,46 @@
 				<ul>
 					<li>
 						<a href="{% url 'portal:dashboard' %}" class="ttr-material-button">
-							<span class="ttr-icon"><i class="ti-home"></i></span>
+							<span class="ttr-icon"><i class="ti-dashboard"></i></span>
 		                	<span class="ttr-label">Dashborad</span>
 		                </a>
 		            </li>
 
 					<!--Staff links-->
-					{% if l_user.is_staff %}
-						<li>
-							<a href="{% url 'schools:index' %}" class="ttr-material-button">
-								<span class="ttr-icon"><i class="ti-book"></i></span>
-								<span class="ttr-label">Schools</span>
-							</a>
-						</li>
-						<li>
-							<a href="{% url 'admissions:index' %}" class="ttr-material-button">
-								<span class="ttr-icon"><i class="ti-bookmark-alt"></i></span>
-								<span class="ttr-label">Admissions</span>
-								<span class="ttr-arrow-icon"><i class="fa fa-angle-down"></i></span>
-							</a>
-							<ul>
-								<li>
-									<a href="{% url 'admissions:applicants' %}" class="ttr-material-button"><span class="ttr-label">Applicants</span></a>
-								</li>
-							</ul>
-						</li>
-					{% else %}
-						<li>
-							<a href="{% url 'admissions:my-application' %}" class="ttr-material-button">
-								<span class="ttr-icon"><i class="ti-layout-accordion-list"></i></span>
-								<span class="ttr-label">My Application</span>
-							</a>
-						</li>
-						<li>
-							<a href="{% url 'payments:payments' %}" class="ttr-material-button">
-								<span class="ttr-icon"><i class="material-icons">payments</i></span>
-								<span class="ttr-label">Payments</span>
-							</a>
-						</li>
+					{% if l_user.username %}
+						{% if l_user.is_staff %}
+							<li>
+								<a href="{% url 'schools:index' %}" class="ttr-material-button">
+									<span class="ttr-icon"><i class="ti-flag"></i></span>
+									<span class="ttr-label">Schools</span>
+								</a>
+							</li>
+							<li>
+								<a href="{% url 'admissions:index' %}" class="ttr-material-button">
+									<span class="ttr-icon"><i class="ti-briefcase"></i></span>
+									<span class="ttr-label">Admissions</span>
+									<span class="ttr-arrow-icon"><i class="fa fa-angle-down"></i></span>
+								</a>
+								<ul>
+									<li>
+										<a href="{% url 'admissions:applicants' %}" class="ttr-material-button"><span class="ttr-label">Applicants</span></a>
+									</li>
+								</ul>
+							</li>
+						{% else %}
+							<li>
+								<a href="{% url 'admissions:my-application' %}" class="ttr-material-button">
+									<span class="ttr-icon"><i class="ti-layout-accordion-list"></i></span>
+									<span class="ttr-label">My Application</span>
+								</a>
+							</li>
+							<li>
+								<a href="{% url 'payments:payments' %}" class="ttr-material-button">
+									<span class="ttr-icon"><i class="material-icons">payments</i></span>
+									<span class="ttr-label">Payments</span>
+								</a>
+							</li>
+						{% endif %}
 					{% endif %}
 					<!--
 					<li>
@@ -205,20 +209,32 @@
 		                </a>
 		            </li>-->
 					<li>
+						<a href="{% url 'portal:programmes' %}" class="ttr-material-button">
+							<span class="ttr-icon"><i class="ti-agenda"></i></span>
+		                	<span class="ttr-label">Programmes</span>
+		                </a>
+		            </li>
+					<li>
 						<a href="#" class="ttr-material-button">
 							<span class="ttr-icon"><i class="ti-user"></i></span>
 		                	<span class="ttr-label">User</span>
 		                	<span class="ttr-arrow-icon"><i class="fa fa-angle-down"></i></span>
 		                </a>
 		                <ul>
-		                	<li>
-		                		<a href="#" class="ttr-material-button"><span class="ttr-label">My Profile</span></a>
-		                	</li>
-
-							<!--Staff links-->
-							{% if l_user.is_staff %}
+							{% if l_user.username %}
 								<li>
-									<a href="{% url 'students:students' %}" class="ttr-material-button"><span class="ttr-label">Students</span></a>
+									<a href="#" class="ttr-material-button"><span class="ttr-label">My Profile</span></a>
+								</li>
+
+								<!--Staff links-->
+								{% if l_user.is_staff %}
+									<li>
+										<a href="{% url 'students:students' %}" class="ttr-material-button"><span class="ttr-label">Students</span></a>
+									</li>
+								{% endif %}
+							{% else %}
+								<li>
+									<a href="{% url 'portal:login' %}" class="ttr-material-button"><span class="ttr-label">Login</span></a>
 								</li>
 							{% endif %}
 		                </ul>
