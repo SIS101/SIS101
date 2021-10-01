@@ -1,0 +1,25 @@
+{% extends 'dashboard/base.html' %}
+{% block title %}Programme{% endblock title %}
+
+{% block main %}
+{% load static %}
+<div class="widget-box">
+    <div class="wc-title">
+        <h4>{{ programme.name }}</h4>
+    </div>
+    <div class="widget-inner">
+        <div class="orders-list">
+            <ul>
+            {% for course in courses %}
+                <li>
+                    <span class="orders-title">
+                        <a href="#" class="orders-title-name">{{ course.name }}</a>
+                        <span class="orders-info">Year | {{ course.year }}; Semester | {{ course.semester }}</span>
+                    </span>
+                </li>
+            {% endfor %}
+            </ul>
+        </div>
+    </div>
+</div>
+{% endblock main %}

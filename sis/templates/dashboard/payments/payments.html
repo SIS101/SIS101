@@ -1,23 +1,31 @@
 {% extends 'dashboard/base.html' %}
 {% block title %}Payments Due{% endblock title %}
+{% block breadcrumbTitle %}Payments{% endblock breadcrumbTitle %}
 {% block breadcrumb %}
-<li>payments</li>
+<li>Payments</li>
 {% endblock breadcrumb %}
 
 {% block main %}
 <div class="container">
     <div class="row">
-        <div class="col-md-6 col-lg-6 col-xl-6 col-sm-6 col-12">
+        <div class="col-md-6 col-lg-4 col-xl-4 col-sm-6 col-12">
             <div class="widget-card widget-bg3">
                 <center class="p-2">		
-                    <a href="{% url 'payments:due' %}" class="btn outline white">Pending Payments</a>
+                    <a href="{% url 'payments:pending' %}" class="btn outline white">Pending Payments</a>
                 </center> 			      
             </div>
         </div>
-        <div class="col-md-6 col-lg-6 col-xl-6 col-sm-6 col-12">
+        <div class="col-md-6 col-lg-4 col-xl-4 col-sm-6 col-12">
             <div class="widget-card widget-bg4">	
                 <center class="p-2">		
                     <a href="" class="btn outline white">Cleared Payments</a>
+                </center> 			      
+            </div>
+        </div>
+        <div class="col-md-6 col-lg-4 col-xl-4 col-sm-6 col-12">
+            <div class="widget-card widget-bg1">	
+                <center class="p-2">		
+                    <a href="{% url 'payments:submit-deposit-slip' %}" class="btn outline white">Submit Deposit Slip</a>
                 </center> 			      
             </div>
         </div>
@@ -30,15 +38,27 @@
             <div class="widget-inner">
                 <div class="orders-list">
                     <ul>
-                        <li><!--
-                            <span class="orders-title">
-                                <a href="#" class="orders-title-name">Anna Strong </a>
-                                <span class="orders-info">Order #02357 | Date 12/08/2019</span>
-                            </span>
-                            <span class="orders-btn">
-                                <span class="badge badge-primary">Primary</span>
-                            </span>-->
-                        </li>
+                        {% for payment in payments %}
+                            <li>
+                                <span class="orders-title">
+                                    <a href="{% url 'payments:payment' payment_id=payment.id %}" class="orders-title-name">{{ payment.amount }}</a>
+                                    <span class="orders-info">{{ payment.deposit_date }} | {{ payment.transaction_id }} | {{ payment.description }}</span>
+                                </span>
+                                {% if payment.status == "pending" %}
+                                    <span class="orders-btn">
+                                        <span class="badge badge-primary">{{ payment.status }}</span>
+                                    </span>
+                                {% elif payment.status == "accepted" %}
+                                    <span class="orders-btn">
+                                        <span class="badge badge-success">{{ payment.status }}</span>
+                                    </span>
+                                {% elif payment.status == "declined" %}
+                                    <span class="orders-btn">
+                                        <span class="badge badge-danger">{{ payment.status }}</span>
+                                    </span>
+                                {% endif %}
+                            </li>
+                        {% endfor %}
                     </ul>
                 </div>
             </div>

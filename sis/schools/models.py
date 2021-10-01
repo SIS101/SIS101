@@ -18,6 +18,7 @@ class Programme(models.Model):
         ('phd', 'Phd')
     ]
     name = models.CharField(max_length=200)
+    description = models.TextField(default="")
     code = models.CharField(max_length=200, default="")
     type = models.CharField(max_length=200, choices=TYPE_CHOICES, default="diploma")
     field_work = models.BooleanField(default=False)

@@ -1,0 +1,43 @@
+{% extends 'dashboard/base.html' %}
+{% block title %}Invoice {{ invoice.id }}{% endblock title %}
+{% block breadcrumbTitle %}Invoice {{ invoice.id }}{% endblock breadcrumbTitle %}
+{% block breadcrumb %}
+<li><a href="{% url 'payments:payments' %}">Payments</a></li>
+<li><a href="{% url 'payments:pending' %}">Pending</a></li>
+<li>{{ invoice.id }}</li>
+{% endblock breadcrumb %}
+
+{% block main %}
+
+<div class="widget-box">
+    <div class="wc-title">
+        <h4>Payment Pending</h4>
+    </div>
+    <div class="widget-inner">
+        <table class="table">
+            <thead class="thead-dark">
+                <tr>
+                    <th>ID</th>
+                    <th>Description</th>
+                    <th>Amount</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in invoice.invoiceitem_set.all %}
+                <tr>
+                    <td>{{ item.id }}</td>
+                    <td>{{ item.description }}</td>
+                    <td>{{ item.amount }}</td>
+                </tr>
+                {% endfor %}
+                <tr>
+                    <th>Total</th>
+                    <td></td>
+                    <td>{{ invoice.get_total }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+{% endblock main %}

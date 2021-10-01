@@ -123,7 +123,7 @@ def application(request):
                         messages.success(request, "Student successfully created.")
                         messages.success(request, "Login username: {}, password: 123456".format(data["email"]))
                         try:
-                            invoice = Invoice.objects.create(to=student_user, due_date=timezone.datetime.today().date())
+                            invoice = Invoice.objects.create(to=student_user, notes="Issued upon completion of application.", due_date=timezone.datetime.today().date())
                             InvoiceItem.objects.create(invoice=invoice, description="Application fee", amount=150)
                         except Exception as e:
                             messages.error(request, "Failed to send application invoice: "+str(e))

@@ -1,0 +1,43 @@
+{% extends 'dashboard/base.html' %}
+{% block title %}Payment{{ invoice.id }}{% endblock title %}
+{% block breadcrumbTitle %}Payment {{ payment.id }}{% endblock breadcrumbTitle %}
+{% block breadcrumb %}
+<li><a href="{% url 'payments:payments' %}">Payments</a></li>
+<li>{{ payment.id }}</li>
+{% endblock breadcrumb %}
+
+{% block main %}
+
+<div class="widget-box">
+    <div class="wc-title">
+        <h4>Payment {{ payment.status }}</h4>
+    </div>
+    <div class="widget-inner">
+        <table class="table">
+            <tbody>
+                <tr>
+                    <th>ID</th>
+                    <th>{{ payment.id }}</th>
+                </tr>
+                <tr>
+                    <th>Transaction ID</th>
+                    <th>{{ payment.transaction_id }}</th>
+                </tr>
+                <tr>
+                    <th>Description</th>
+                    <th>{{ payment.description }}</th>
+                </tr>
+                <tr>
+                    <th>Amount</th>
+                    <th>{{ payment.amount }}</th>
+                </tr>
+                <tr>
+                    <th>Deposit Date</th>
+                    <th>{{ payment.deposit_date }}</th>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+{% endblock main %}

@@ -1,4 +1,4 @@
-from django.shortcuts import redirect, render
+from django.shortcuts import get_object_or_404, redirect, render
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
@@ -6,6 +6,10 @@ from django.http import HttpResponseRedirect
 from django.urls import reverse
 from website.models import WebsiteSetting
 from website.forms import WebsiteSettingForm
+from schools.models import (
+    Programme,
+    Course
+)
 
 def dashboard(request):
     template="dashboard/portal/dashboard.html"
@@ -60,6 +64,18 @@ def coming_soon(request):
 
 def programmes(request):
     template="dashboard/portal/programmes.html"
+    context={"l_user": request.user, "programmes": Programme.objects.all()}
+
+    return render(request, template, context)
+
+def programme(request, programme_id):
+    template="dashboard/portal/programme.html"
     context={"l_user": request.user}
+
+    programme = Programme.objects.get(pk=programme_id)
+    context["programme"] = programme
+
+    courses = Course.objects.filter(programme=programme_id)
+    context["courses"] = courses
 
     return render(request, template, context)

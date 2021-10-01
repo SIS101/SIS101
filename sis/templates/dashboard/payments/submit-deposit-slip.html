@@ -1,0 +1,20 @@
+{% extends 'dashboard/base.html' %}
+{% block title %}Submit deposit slip{% endblock title %}
+{% block breadcrumbTitle %}Submit Deposit Slip{% endblock breadcrumbTitle %}
+{% block breadcrumb %}
+<li><a href="{% url 'payments:payments' %}">Payments</a></li>
+<li>Submit Deposit Slip</li>
+{% endblock breadcrumb %}
+
+{% block main %}
+
+<div class="widget-box">
+    <div class="wc-title">
+        <h4>Submit Deposit Slip</h4>
+    </div>
+    <div class="widget-inner">
+        {% include 'form_snippet.html' with form_title='Submit Deposit Slip' form_action='' form_method='POST' button='Submit' %}
+    </div>
+</div>
+
+{% endblock main %}
