@@ -11,9 +11,10 @@
 
 <div class="widget-box">
     <div class="wc-title">
-        <h4>Payment Pending</h4>
+        <h4>Payment {{ invoice.status }}</h4>
     </div>
     <div class="widget-inner">
+        <p>{{ invoice.notes }}</p>
         <table class="table">
             <thead class="thead-dark">
                 <tr>

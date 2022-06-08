@@ -38,6 +38,14 @@ class Invoice(models.Model):
         for item in items:
             total += item.amount
         return total
+    
+    @property
+    def total(self):
+        total = 0
+        items = InvoiceItem.objects.filter(invoice=self)
+        for item in items:
+            total += item.amount
+        return total
 
 class InvoiceItem(models.Model):
     invoice=models.ForeignKey(Invoice, on_delete=models.CASCADE)

@@ -20,10 +20,10 @@
                     <span class="orders-title">
                         <a href="{% url 'payments:invoice' invoice_id=invoice.id %}" class="orders-title-name">{{ invoice.get_total }} </a>
                         <span class="orders-info">{{ invoice.date }}: </span>
-                        <span class="orders-info">{% lorem 1 b random %}</span>
+                        <span class="orders-info">{{ invoice.notes }}</span>
                     </span>
                     <span class="orders-btn">
-                        <!--<span class="badge badge-primary">Primary</span>-->
+                        <span class="badge badge-warning">{{ invoice.status }}</span>
                     </span>
                 </li>            
             {% endfor %}

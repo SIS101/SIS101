@@ -23,6 +23,7 @@ class Student(models.Model):
         ('phd', 'Phd')
     ]
     SCHOOL_STATUS_CHOICES = [
+        ('applied','Application received'),
         ('pending', 'Pending'),
         ('admitted', 'Admitted'),
         ('declined', 'Declined')
@@ -76,7 +77,7 @@ class Student(models.Model):
     nrc = models.FileField(upload_to="student_uploads", null=True)
     passport_photo = models.FileField(upload_to="student_uploads", null=True)
 
-    school_status = models.CharField(max_length=200, choices=SCHOOL_STATUS_CHOICES, default="pending")
+    school_status = models.CharField(max_length=200, choices=SCHOOL_STATUS_CHOICES, default="applied")
 
     def __str__(self) -> str:
         return self.profile.user.username

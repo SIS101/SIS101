@@ -25,6 +25,11 @@ def my_application(request):
     template="dashboard/admissions/my-application.html"
     context={}
     context["l_user"] = request.user
+    invoices = Invoice.objects.filter(to=request.user.profile.student)
+    if len(invoices)>0:
+        context["invoices"] = invoices
+    else:
+        context["invoices"] = False
 
     return render(request, template, context)
 

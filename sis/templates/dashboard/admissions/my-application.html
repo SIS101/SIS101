@@ -28,6 +28,25 @@
                 aria-valuemin="0" aria-valuemax="100" ></div>
             {% endif %}
         </div>
+        {% if invoices %}
+            <div class="orders-list">
+                <p></p>
+                <ul>
+                {% for invoice in invoices %}
+                    <li>
+                        <span class="orders-title">
+                            <a href="{% url 'payments:invoice' invoice_id=invoice.id %}" class="orders-title-name">{{ invoice.get_total }} </a>
+                            <span class="orders-info">{{ invoice.date }}: </span>
+                            <span class="orders-info">{{ invoice.notes }}</span>
+                        </span>
+                        <span class="orders-btn">
+                            <span class="badge badge-warning">{{ invoice.status }}</span>
+                        </span>
+                    </li>            
+                {% endfor %}
+                </ul>
+            </div>
+        {% endif %}
     </div>
 </div>
 
