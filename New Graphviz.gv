@@ -1,0 +1,11 @@
+digraph G {
+
+student [color="green"];
+admin [color="blue"];
+
+student -> apply -> pay_application_fee -> application_pending [color="green"];
+
+admin -> application_pending -> review_application -> admit_student [color="blue"];
+review_application -> decline_application [color="blue"];
+
+}

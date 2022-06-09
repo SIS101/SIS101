@@ -28,9 +28,9 @@
                 aria-valuemin="0" aria-valuemax="100" ></div>
             {% endif %}
         </div>
-        {% if invoices %}
+        {% if balance.total_balance < 0 %}
             <div class="orders-list">
-                <p></p>
+                <p>Please clear the following Invoices to proceed.</p>
                 <ul>
                 {% for invoice in invoices %}
                     <li>
@@ -46,6 +46,8 @@
                 {% endfor %}
                 </ul>
             </div>
+        {% else %}
+            <a href="" class="btn">Proceed</a>
         {% endif %}
     </div>
 </div>

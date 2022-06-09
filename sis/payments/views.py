@@ -4,6 +4,7 @@ from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
 from django.urls.base import reverse
 from payments import models, forms
+from payments.DataTypes import StudentBalance
 
 # Create your views here.
 @login_required
@@ -15,6 +16,9 @@ def payments(request):
 
     payments = models.StudentDeposit.objects.filter(student=l_user.profile.student)
     context["payments"] = payments
+
+    bs = StudentBalance(l_user.profile.student)
+    context["balance"] = bs
 
     return render(request, template, context)
 
@@ -51,6 +55,17 @@ def invoice(request, invoice_id):
 
     invoice = models.Invoice.objects.get(pk=invoice_id)
     context["invoice"] = invoice
+
+    bs = StudentBalance(l_user.profile.student)
+    context["balance"] = bs
+
+    clearInvoice = request.GET.get("clear",None)
+    if not clearInvoice == None:
+        if bs.total_balance < 0:
+            return HttpResponseRedirect(reverse("payments:submit-deposit-slip"))
+        else:
+            invoice.status = "cleared"
+            invoice.save()
 
     return render(request, template, context)
 
