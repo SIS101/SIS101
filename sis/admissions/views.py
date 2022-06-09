@@ -11,6 +11,7 @@ from schools.models import Programme
 from django.utils import timezone
 from students.models import Student
 from payments.models import Invoice, InvoiceItem
+from payments.DataTypes import StudentBalance as BalanceSheet
 
 # Create your views here.
 @login_required
@@ -30,6 +31,9 @@ def my_application(request):
         context["invoices"] = invoices
     else:
         context["invoices"] = False
+    
+    bs = BalanceSheet(request.user.profile.student)
+    context["balance"] = bs
 
     return render(request, template, context)
 
