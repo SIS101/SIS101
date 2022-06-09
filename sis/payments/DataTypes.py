@@ -5,7 +5,7 @@ from payments.models import (
 
 class StudentBalance:
     def __init__(self,student):
-        self.invoices = Invoice.objects.filter(to=student,status="pending")
+        self.invoices = Invoice.objects.filter(to=student)
         self.deposits = StudentDeposit.objects.filter(student=student,status="accepted")
     
     @property
