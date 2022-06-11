@@ -38,6 +38,7 @@ def my_application(request):
     return render(request, template, context)
 
 @login_required
+@permission_required(("students.view_student"),login_url="/permission-denied")
 def applicants(request):
     template="dashboard/admissions/applicants.html"
     context={}
@@ -50,6 +51,7 @@ def applicants(request):
     return render(request, template, context)
 
 @login_required
+@permission_required(("students.view_student"),login_url="/permission-denied")
 def view_applicant(request, applicant_id):
     template="dashboard/admissions/view-applicant.html"
     context={}
@@ -62,6 +64,7 @@ def view_applicant(request, applicant_id):
     return render(request, template, context)
 
 @login_required
+@permission_required(("students.change_student"),login_url="/permission-denied")
 def handle_applicant(request, applicant_id, action):
     try:
         applicant = Student.objects.get(pk=applicant_id)

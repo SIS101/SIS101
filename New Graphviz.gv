@@ -3,7 +3,11 @@ digraph G {
 student [color="green"];
 admin [color="blue"];
 
-student -> apply -> pay_application_fee -> application_pending [color="green"];
+student -> apply -> deposit_slip [color="green"];
+student -> deposit_slip;
+
+admin -> deposit_slip -> accept_deposit -> application_pending;
+deposit_slip -> decline_deposit;
 
 admin -> application_pending -> review_application -> admit_student [color="blue"];
 review_application -> decline_application [color="blue"];

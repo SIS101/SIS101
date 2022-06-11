@@ -19,6 +19,15 @@ def dashboard(request):
 
     return render(request, template, context)
 
+def permission_denied(request):
+    template="portal/permission-denied.html"
+    context={}
+    l_user=request.user
+    context["l_user"]=l_user
+    context["resource"]=request.GET.get("next",None)
+
+    return render(request, template, context)
+
 #Create your views here.
 def login_page(request):
     template="dashboard/login.html"

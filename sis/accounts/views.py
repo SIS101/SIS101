@@ -1,11 +1,13 @@
-from django.contrib.auth.decorators import login_required
+from django.contrib.auth.decorators import login_required, permission_required
+from django.contrib.auth.mixins import PermissionRequiredMixin
 from django.views.generic import ListView, DetailView, UpdateView
 from django.utils.decorators import method_decorator
 from payments.models import StudentDeposit
 
 # Create your views here.
 @method_decorator(login_required,name="dispatch")
-class StudentDepositDetail(DetailView):
+class StudentDepositDetail(PermissionRequiredMixin,DetailView):
+    permission_required=("payments.view_studentdeposit")
     model=StudentDeposit
     context_object_name="deposit"
     template_name="dashboard/accounts/student-deposits-detail.html"
@@ -16,7 +18,8 @@ class StudentDepositDetail(DetailView):
         return context
 
 @method_decorator(login_required,name="dispatch")
-class IndexView(ListView):
+class IndexView(PermissionRequiredMixin,ListView):
+    permission_required=("payments.view_studentdeposit")
     template_name="accounts/accounts.html"
     model = StudentDeposit
     context_object_name="deposits"
@@ -28,7 +31,8 @@ class IndexView(ListView):
         return context
 
 @method_decorator(login_required,name="dispatch")
-class UpdateStudentDeposit(UpdateView):
+class UpdateStudentDeposit(PermissionRequiredMixin,UpdateView):
+    permission_required=("payments.change_studentdeposit")
     template_name="accounts/update-student-deposit.html"
     model=StudentDeposit
     context_object_name="deposit"
@@ -41,7 +45,8 @@ class UpdateStudentDeposit(UpdateView):
         return context
 
 @method_decorator(login_required,name="dispatch")
-class PendingStudentDeposit(ListView):
+class PendingStudentDeposit(PermissionRequiredMixin,ListView):
+    permission_required=("payments.view_studentdeposit")
     template_name="accounts/pending-student-deposit.html"
     queryset=StudentDeposit.objects.filter(status="pending")
     context_object_name="deposits"
@@ -53,7 +58,8 @@ class PendingStudentDeposit(ListView):
         return context
 
 @method_decorator(login_required,name="dispatch")
-class AcceptedStudentDeposit(ListView):
+class AcceptedStudentDeposit(PermissionRequiredMixin,ListView):
+    permission_required=("payments.view_studentdeposit")
     template_name="accounts/accepted-student-deposit.html"
     queryset=StudentDeposit.objects.filter(status="accepted")
     context_object_name="deposits"
@@ -65,7 +71,8 @@ class AcceptedStudentDeposit(ListView):
         return context
 
 @method_decorator(login_required,name="dispatch")
-class DeclinedStudentDeposit(ListView):
+class DeclinedStudentDeposit(PermissionRequiredMixin,ListView):
+    permission_required=("payments.view_studentdeposit")
     template_name="accounts/declined-student-deposit.html"
     queryset=StudentDeposit.objects.filter(status="declined")
     context_object_name="deposits"
