@@ -1,0 +1,14 @@
+{% extends 'dashboard/base.html' %}
+{% block title %}Deposits Declined{% endblock title %}
+{% block breadcrumbTitle %}Declined{% endblock breadcrumbTitle %}
+{% block breadcrumb %}
+<li><a href="{% url 'accounts:index' %}">Accounts</a></li>
+<li>Deposits</li>
+<li>Declined</li>
+{% endblock breadcrumb %}
+
+{% block main %}
+
+{% include 'accounts/student-deposits.html' with deposits_satus="declined" %}
+
+{% endblock main %}

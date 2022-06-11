@@ -1,0 +1,45 @@
+{% extends 'dashboard/base.html' %}
+{% block title %}Student Deposit {{ deposit.id }}{% endblock title %}
+{% block breadcrumbTitle %}Deposit {{ deposit.id }}{% endblock breadcrumbTitle %}
+{% block breadcrumb %}
+<li><a href="{% url 'accounts:index' %}">Accounts</a></li>
+<li>Deposits</li>
+<li>{{ deposit.id }}</li>
+{% endblock breadcrumb %}
+
+{% block main %}
+
+<div class="widget-box">
+    <div class="wc-title">
+        <h4>Deposit {{ deposit.status }}</h4>
+    </div>
+    <div class="widget-inner">
+        <table class="table">
+            <tbody>
+                <tr>
+                    <th>ID</th>
+                    <th>{{ deposit.id }}</th>
+                </tr>
+                <tr>
+                    <th>Transaction ID</th>
+                    <th>{{ deposit.transaction_id }}</th>
+                </tr>
+                <tr>
+                    <th>Description</th>
+                    <th>{{ deposit.description }}</th>
+                </tr>
+                <tr>
+                    <th>Amount</th>
+                    <th>{{ deposit.amount }}</th>
+                </tr>
+                <tr>
+                    <th>Deposit Date</th>
+                    <th>{{ deposit.deposit_date }}</th>
+                </tr>
+            </tbody>
+        </table>
+        <center><a href="{% url 'accounts:update-student-deposit' pk=deposit.id %}" class="btn">Update Status</a></center>
+    </div>
+</div>
+
+{% endblock main %}

@@ -1,0 +1,37 @@
+{% extends 'dashboard/base.html' %}
+{% block title %}Accounts{% endblock title %}
+{% block breadcrumbTitle %}Accounts{% endblock breadcrumbTitle %}
+{% block breadcrumb %}
+<li>Accounts</li>
+{% endblock breadcrumb %}
+
+{% block main %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-6 col-lg-4 col-xl-4 col-sm-6 col-12">
+            <div class="widget-card widget-bg3">
+                <center class="p-2">		
+                    <a href="{% url 'accounts:pending-student-deposit' %}" class="btn outline white">Pending Deposits</a>
+                </center> 			      
+            </div>
+        </div>
+        <div class="col-md-6 col-lg-4 col-xl-4 col-sm-6 col-12">
+            <div class="widget-card widget-bg4">	
+                <center class="p-2">		
+                    <a href="{% url 'accounts:accepted-student-deposit' %}" class="btn outline white">Accepted Deposits</a>
+                </center> 			      
+            </div>
+        </div>
+        <div class="col-md-6 col-lg-4 col-xl-4 col-sm-6 col-12">
+            <div class="widget-card widget-bg1">	
+                <center class="p-2">		
+                    <a href="{% url 'accounts:declined-student-deposit' %}" class="btn outline white">Declined Deposits</a>
+                </center> 			      
+            </div>
+        </div>
+    </div>
+    <div class="m-b30">
+        {% include 'accounts/student-deposits.html' with deposits_satus="all" %}
+    </div>
+</div>
+{% endblock main %}

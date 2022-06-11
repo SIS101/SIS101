@@ -1,0 +1,46 @@
+{% extends 'dashboard/base.html' %}
+{% block title %}Student Deposits{{ invoice.id }}{% endblock title %}
+{% block breadcrumbTitle %}Student Deposits{% endblock breadcrumbTitle %}
+
+{% block main %}
+
+<div class="widget-box">
+    <div class="wc-title">
+        <h4>Deposits</h4>
+    </div>
+    <div class="widget-inner">
+        <div class="orders-list">
+            <ul>
+                {% for payment in deposits %}
+                    <li>
+                        <span class="orders-title">
+                            <a href="{% url 'accounts:student-deposit-detail' pk=payment.id %}" class="orders-title-name">{{ payment.amount }}</a>
+                            <span class="orders-info">{{ payment.deposit_date }} | {{ payment.transaction_id }} | {{ payment.description }}</span>
+                        </span>
+                        {% if payment.status == "pending" %}
+                            <span class="orders-btn">
+                                <span class="badge badge-primary">{{ payment.status }}</span>
+                            </span>
+                        {% elif payment.status == "accepted" %}
+                            <span class="orders-btn">
+                                <span class="badge badge-success">{{ payment.status }}</span>
+                            </span>
+                        {% elif payment.status == "declined" %}
+                            <span class="orders-btn">
+                                <span class="badge badge-danger">{{ payment.status }}</span>
+                            </span>
+                        {% endif %}
+                    </li>
+                {% empty %}
+                <li>
+                    <span class="orders-title">
+                        <a href="" class="orders-title-name">No items to show</a>
+                    </span>
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+</div>
+
+{% endblock main %}
