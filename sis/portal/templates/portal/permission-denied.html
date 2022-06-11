@@ -1,0 +1,12 @@
+{% extends 'dashboard/base.html' %}
+{% block title %}Permission Denied{% endblock title %}
+
+{% block main %}
+
+<div class="jumbotron">
+    <center>
+        <h3>{{ l_user.username }}, you have insuficient privilages to access the resource {{ resource }}</h3>
+    </center>
+</div>
+
+{% endblock main %}
