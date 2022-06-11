@@ -52,7 +52,8 @@ INSTALLED_APPS = [
     'admissions',
     'students',
     'portal',
-    'payments'
+    'payments',
+    'accounts'
 ]
 X_FRAME_OPTIONS = 'SAMEORIGIN'
 MIDDLEWARE = [
@@ -159,7 +160,7 @@ STATIC_ROOT = os.path.join(BASE_DIR, "static")
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-LOGIN_URL="/portal/login"
+LOGIN_URL="/login"
 
 MEDIA_URL="/media/"
 MEDIA_ROOT=os.path.join(BASE_DIR, "media")

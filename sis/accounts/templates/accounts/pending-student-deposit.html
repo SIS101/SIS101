@@ -1,0 +1,14 @@
+{% extends 'dashboard/base.html' %}
+{% block title %}Deposits Pending{% endblock title %}
+{% block breadcrumbTitle %}Pending{% endblock breadcrumbTitle %}
+{% block breadcrumb %}
+<li><a href="{% url 'accounts:index' %}">Accounts</a></li>
+<li>Deposits</li>
+<li>Pending</li>
+{% endblock breadcrumb %}
+
+{% block main %}
+
+{% include 'accounts/student-deposits.html' with deposits_satus="pending" %}
+
+{% endblock main %}

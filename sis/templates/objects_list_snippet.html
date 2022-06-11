@@ -1,0 +1,26 @@
+
+        <div class="orders-list">
+            <ul>
+                {% for payment in objects %}
+                    <li>
+                        <span class="orders-title">
+                            <a href="{% url 'payments:payment' payment_id=payment.id %}" class="orders-title-name">{{ payment.amount }}</a>
+                            <span class="orders-info">{{ payment.deposit_date }} | {{ payment.transaction_id }} | {{ payment.description }}</span>
+                        </span>
+                        {% if payment.status == "pending" %}
+                            <span class="orders-btn">
+                                <span class="badge badge-primary">{{ payment.status }}</span>
+                            </span>
+                        {% elif payment.status == "accepted" %}
+                            <span class="orders-btn">
+                                <span class="badge badge-success">{{ payment.status }}</span>
+                            </span>
+                        {% elif payment.status == "declined" %}
+                            <span class="orders-btn">
+                                <span class="badge badge-danger">{{ payment.status }}</span>
+                            </span>
+                        {% endif %}
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>

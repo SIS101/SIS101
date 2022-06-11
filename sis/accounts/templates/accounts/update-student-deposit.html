@@ -1,0 +1,22 @@
+{% extends 'dashboard/base.html' %}
+{% block title %}Deposits{% endblock title %}
+{% block breadcrumbTitle %}Update{% endblock breadcrumbTitle %}
+{% block breadcrumb %}
+<li><a href="{% url 'accounts:index' %}">Accounts</a></li>
+<li>Deposits</li>
+<li><a href="{% url 'accounts:student-deposit-detail' pk=deposit.id %}">{{ deposit.id }}</a></li>
+<li>Update</li>
+{% endblock breadcrumb %}
+
+{% block main %}
+<div class="container">
+    <div class="widget-box">
+        <div class="wc-title">
+            <h4>Update Deposit</h4>
+        </div>
+        <div class="widget-inner">
+            {% include 'form_snippet.html' with form_title="Update Deposit" form_action="" form_method="post" button="Save" %}
+        </div>
+    </div>
+</div>
+{% endblock main %}
