@@ -35,6 +35,15 @@ def my_application(request):
     bs = BalanceSheet(request.user.profile.student)
     context["balance"] = bs
 
+    proceed = request.GET.get("proceed",None)
+    if not proceed == None:
+        if bs.total_balance < 0:
+            messages.warning(request,"Cannot proceed. You have an invoice pending")
+            return HttpResponseRedirect(reverse("payments:submit-deposit-slip"))
+        else:
+            request.user.profile.student.school_status = "pending"
+            request.user.profile.student.save()
+
     return render(request, template, context)
 
 @login_required
