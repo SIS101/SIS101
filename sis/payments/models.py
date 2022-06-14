@@ -11,7 +11,7 @@ class ProgrammeFee(models.Model):
     amount=models.FloatField(default=0.0)
 
     def __str__(self):
-        return str(self.amount)
+        return f"{self.programme.name}->{str(self.amount)}"
 
     @receiver(post_save, sender=Programme)
     def on_create_programme(instance, created, **kwargs):
